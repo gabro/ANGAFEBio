@@ -1,0 +1,47 @@
+<style type="text/css">
+
+#topmenu{
+	text-align:right; /* enter "left", "right", or "center" to orient the menu accordingly */
+}
+
+ul.arrowunderline{
+list-style-type:none;
+margin:0;
+margin-right:50px;
+padding:0;
+text-align:right; /* enter "left", "right", or "center" to orient the menu accordingly */
+font: bold 14px Arial;
+}
+
+ul.arrowunderline li{
+display:inline;
+margin-right:10px; /* spacing between each menu item */
+}
+
+ul.arrowunderline li a{
+border-bottom:1px solid orange;
+position:relative;
+color:black;
+padding-bottom:8px; /*spacing between each menu item and arrow underline beneath it */
+text-decoration:none;
+
+}
+
+ul.arrowunderline li a:hover{
+border-bottom:3px solid purple; /* style of arrow underline */
+}
+
+ul.arrowunderline li a:hover:after{ /* use CSS generated content to add arrow to the menu */
+content:'';
+width:0;
+height:0;
+position:absolute;
+left:50%;
+margin-left:-5px; /* value should match border-width below */
+bottom: 0;
+border-width:5px; /* value should match margin-left above */
+border-style:solid;
+border-color: transparent transparent purple transparent; /* create up arrow */
+}
+
+</style>
