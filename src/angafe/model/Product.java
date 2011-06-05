@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.images.Image;
-import com.sun.org.apache.bcel.internal.generic.NEW;
 
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.InverseModelListRef;
