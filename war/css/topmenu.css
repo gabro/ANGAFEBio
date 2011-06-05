@@ -28,7 +28,7 @@ text-decoration:none;
 }
 
 ul.arrowunderline li a:hover{
-border-bottom:3px solid purple; /* style of arrow underline */
+border-bottom:3px solid orange; /* style of arrow underline */
 }
 
 ul.arrowunderline li a:hover:after{ /* use CSS generated content to add arrow to the menu */
@@ -41,7 +41,7 @@ margin-left:-5px; /* value should match border-width below */
 bottom: 0;
 border-width:5px; /* value should match margin-left above */
 border-style:solid;
-border-color: transparent transparent purple transparent; /* create up arrow */
+border-color: transparent transparent orange transparent; /* create up arrow */
 }
 
 </style>
