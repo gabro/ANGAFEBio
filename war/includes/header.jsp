@@ -6,5 +6,5 @@
 
 
 <div id="header">
-	<jsp:include page="/includes/menu.jsp" flush="true" />
+	<jsp:include page="/includes/topmenu.jsp" flush="true" />
 </div>

@@ -7,12 +7,30 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>angafe Index</title>
+<title>ANGAFE Index</title>
 </head>
 <body>	
-	<div id="header">
-		<jsp:include page="/includes/header.jsp" flush="true" />
+
+<div id="maincontainer">
+
+<div id="header">
+	<jsp:include page="/includes/header.jsp" flush="true" />
+</div>
+
+<div id="contentwrapper">
+	<div id="contentcolumn">
+		<p class="title">ANGAFE BIO</p>
 	</div>
-<p class="title">ANGAFE BIO</p>
+</div>
+
+<div id="rightcolumn">
+	<div class="innertube">
+		<jsp:include page="/includes/sidemenu.jsp" flush="true" />
+	</div>
+</div>
+
+<div id="footer">Realizzazione a cura di <b>Andrea Villa</b>, <b>Federico Pellegatta</b> e <b>Gabriele Petronella</b></a></div>
+
+</div>
 </body>
 </html>

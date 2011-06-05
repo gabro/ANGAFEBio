@@ -1,17 +1,31 @@
 @CHARSET "utf-8";
 
-body { background-color: #EEEEEE; }
-
 h1 { 
 	height: 33px;
 	font-size: x-large;
-	font-family: "Times New Roman", Times, serif;
 }
 
-ul li { list-style: square; }
 a:hover { background-color: white; }
 
 input.err { background-color: orange; }
+
+.title{
+	font: 60 "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+	text-shadow: #DDD 0 10px 2px;
+	text-align: center;
+	color: orange;
+}
+
+body{
+margin:0;
+padding:0;
+line-height: 1.5em;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+b{font-size: 110%;}
+em{color: red;}
+
 
 #header{
 	width:100%;
@@ -19,9 +33,39 @@ input.err { background-color: orange; }
 	background:url(/resources/header.png) no-repeat top center;
 }
 
-.title{
-	font: 60 "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
-	text-shadow: #DDD 0 10px 2px;
+#contentwrapper{
+	float: left;
+	width: 100%;
+}
+
+#contentcolumn{
+	margin-right: 220px; /*Set right margin to RightColumnWidth*/
+}
+
+#rightcolumn{
+	float: left;
+	width: 220px; /*Width of right column in pixels*/
+	margin-left: -220px; /*Set left margin to -(RightColumnWidth) */
+	background: #FDE95E;
+}
+
+#footer{
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	clear: left;
+	width: 100%;
+	background: orange;
+	color: #FFF;
 	text-align: center;
-	color: orange;
+	padding: 4px 0;
+}
+
+#footer a{
+	color: #FFFF80;
+}
+
+.innertube{
+margin: 10px; /*Margins for inner DIV inside each column (to provide padding)*/
+margin-top: 0;
 }
