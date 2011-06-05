@@ -1,18 +1,16 @@
 package angafe.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
+import com.google.appengine.api.datastore.Email;
 import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.images.Image;
-import com.sun.org.apache.bcel.internal.generic.NEW;
 
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.InverseModelListRef;
 import org.slim3.datastore.Model;
 
 @Model(schemaVersion = 1)
-public class Product implements Serializable {
+public class Producer implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -21,48 +19,18 @@ public class Product implements Serializable {
 
     @Attribute(version = true)
     private Long version;
-
+    
+    
     private String name;
     private String description;
-    private String healthBenefits;
-    @Attribute(lob = true)
-    private ArrayList<Image> photos;
-    @Attribute(persistent = false)
-    private InverseModelListRef<ProductProducer, Product> productProducerListRef = 
-        new  InverseModelListRef<ProductProducer, Product>(ProductProducer.class,  "productRef", this);
+    private Email email;
+    private String phone;
+    private String fax;
+    private String address;
+    @Attribute(persistent=false)
+    private InverseModelListRef<ProductProducer, Producer> productProducerListRef = 
+        new InverseModelListRef<ProductProducer, Producer>(ProductProducer.class, "producerRef", this);
 
-    public final String getName() {
-        return name;
-    }
-
-    public final void setName(String name) {
-        this.name = name;
-    }
-
-    public final String getDescription() {
-        return description;
-    }
-
-    public final void setDescription(String description) {
-        this.description = description;
-    }
-
-    public final String getHealthBenefits() {
-        return healthBenefits;
-    }
-
-    public final void setHealthBenefits(String healthBenefits) {
-        this.healthBenefits = healthBenefits;
-    }
-
-    public final ArrayList<Image> getPhotos() {
-        return photos;
-    }
-
-    public final void setPhotos(ArrayList<Image> photos) {
-        this.photos = photos;
-    }
-    
     /**
      * Returns the key.
      *
@@ -101,6 +69,58 @@ public class Product implements Serializable {
         this.version = version;
     }
 
+    public final String getName() {
+        return name;
+    }
+
+    public final void setName(String name) {
+        this.name = name;
+    }
+
+    public final String getDescription() {
+        return description;
+    }
+
+    public final void setDescription(String description) {
+        this.description = description;
+    }
+
+    public final Email getEmail() {
+        return email;
+    }
+
+    public final void setEmail(Email email) {
+        this.email = email;
+    }
+
+    public final String getPhone() {
+        return phone;
+    }
+
+    public final void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public final String getFax() {
+        return fax;
+    }
+
+    public final void setFax(String fax) {
+        this.fax = fax;
+    }
+
+    public final String getAddress() {
+        return address;
+    }
+
+    public final void setAddress(String address) {
+        this.address = address;
+    }
+
+    public InverseModelListRef<ProductProducer, Producer> getProductProducerListRef() {
+        return productProducerListRef;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -120,7 +140,7 @@ public class Product implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Product other = (Product) obj;
+        Producer other = (Producer) obj;
         if (key == null) {
             if (other.key != null) {
                 return false;
@@ -129,9 +149,5 @@ public class Product implements Serializable {
             return false;
         }
         return true;
-    }
-
-    public InverseModelListRef<ProductProducer, Product> getProductProducerListRef() {
-        return productProducerListRef;
     }
 }
