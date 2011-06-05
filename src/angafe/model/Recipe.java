@@ -2,14 +2,19 @@ package angafe.model;
 
 import java.io.Serializable;
 
+import angafe.meta.ProductMeta;
+
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.images.Image;
 
 import org.slim3.datastore.Attribute;
+import org.slim3.datastore.InverseModelListRef;
 import org.slim3.datastore.Model;
-import org.slim3.datastore.ModelRef;
+import org.slim3.datastore.Sort;
 
 @Model(schemaVersion = 1)
-public class ProductProducer implements Serializable {
+public class Recipe implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -19,9 +24,18 @@ public class ProductProducer implements Serializable {
     @Attribute(version = true)
     private Long version;
 
-    private ModelRef<Product> productRef = new ModelRef<Product>(Product.class);
-    private ModelRef<Producer> producerRef = new ModelRef<Producer>(Producer.class);
-
+    private String name;
+    private String directions;
+    @Attribute(lob = true)
+    private Image photo;
+    
+    //Una ricetta ha N prodotti
+    @Attribute(persistent=false)
+    private InverseModelListRef<ProductRecipe, Recipe> productRecipeListRef = 
+        new InverseModelListRef<ProductRecipe, Recipe>(ProductRecipe.class, "recipeRef", this,
+                //prodotti ordinati per nome in ordine ascendente
+                new Sort(ProductMeta.get().name.getName(), SortDirection.ASCENDING));
+    
     /**
      * Returns the key.
      *
@@ -60,14 +74,6 @@ public class ProductProducer implements Serializable {
         this.version = version;
     }
 
-    public ModelRef<Product> getProductRef() {
-        return productRef;
-    }
-
-    public ModelRef<Producer> getProducerRef() {
-        return producerRef;
-    }
-
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -87,7 +93,7 @@ public class ProductProducer implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        ProductProducer other = (ProductProducer) obj;
+        Recipe other = (Recipe) obj;
         if (key == null) {
             if (other.key != null) {
                 return false;
@@ -96,5 +102,33 @@ public class ProductProducer implements Serializable {
             return false;
         }
         return true;
+    }
+
+    public InverseModelListRef<ProductRecipe, Recipe> getProductRecipeListRef() {
+        return productRecipeListRef;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setDirections(String directions) {
+        this.directions = directions;
+    }
+
+    public String getDirections() {
+        return directions;
+    }
+
+    public void setPhoto(Image photo) {
+        this.photo = photo;
+    }
+
+    public Image getPhoto() {
+        return photo;
     }
 }

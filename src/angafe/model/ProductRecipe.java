@@ -1,18 +1,15 @@
 package angafe.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.images.Image;
 
 import org.slim3.datastore.Attribute;
-import org.slim3.datastore.InverseModelListRef;
 import org.slim3.datastore.Model;
 import org.slim3.datastore.ModelRef;
 
 @Model(schemaVersion = 1)
-public class Product implements Serializable {
+public class ProductRecipe implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -22,50 +19,9 @@ public class Product implements Serializable {
     @Attribute(version = true)
     private Long version;
 
-    private String name;
-    private String description;
-    private String healthBenefits;
-    @Attribute(lob = true)
-    private ArrayList<Image> photos;
-    //Un prodotto ha N ricette
-    @Attribute(persistent = false)
-    private InverseModelListRef<ProductRecipe, Product> productRecipeListRef = 
-        new  InverseModelListRef<ProductRecipe, Product>(ProductRecipe.class,  "productRef", this);
-    //Un prodotto ha 1 produttore
-    private ModelRef<Producer> producerRef = new ModelRef<Producer>(Producer.class);
-    
-    public final String getName() {
-        return name;
-    }
+    private ModelRef<Product> productRef = new ModelRef<Product>(Product.class);
+    private ModelRef<Recipe> recipeRef = new ModelRef<Recipe>(Recipe.class);
 
-    public final void setName(String name) {
-        this.name = name;
-    }
-
-    public final String getDescription() {
-        return description;
-    }
-
-    public final void setDescription(String description) {
-        this.description = description;
-    }
-
-    public final String getHealthBenefits() {
-        return healthBenefits;
-    }
-
-    public final void setHealthBenefits(String healthBenefits) {
-        this.healthBenefits = healthBenefits;
-    }
-
-    public final ArrayList<Image> getPhotos() {
-        return photos;
-    }
-
-    public final void setPhotos(ArrayList<Image> photos) {
-        this.photos = photos;
-    }
-    
     /**
      * Returns the key.
      *
@@ -104,6 +60,14 @@ public class Product implements Serializable {
         this.version = version;
     }
 
+    public ModelRef<Product> getProductRef() {
+        return productRef;
+    }
+
+    public ModelRef<Recipe> getRecipeRef() {
+        return recipeRef;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -123,7 +87,7 @@ public class Product implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Product other = (Product) obj;
+        ProductRecipe other = (ProductRecipe) obj;
         if (key == null) {
             if (other.key != null) {
                 return false;
@@ -132,13 +96,5 @@ public class Product implements Serializable {
             return false;
         }
         return true;
-    }
-
-    public InverseModelListRef<ProductRecipe, Product> getProductRecipeListRef() {
-        return productRecipeListRef;
-    }
-
-    public ModelRef<Producer> getProducerRef() {
-        return producerRef;
     }
 }

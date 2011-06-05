@@ -2,12 +2,16 @@ package angafe.model;
 
 import java.io.Serializable;
 
+import angafe.meta.ProductMeta;
+
 import com.google.appengine.api.datastore.Email;
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.Query.SortDirection;
 
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.InverseModelListRef;
 import org.slim3.datastore.Model;
+import org.slim3.datastore.Sort;
 
 @Model(schemaVersion = 1)
 public class Producer implements Serializable {
@@ -27,9 +31,12 @@ public class Producer implements Serializable {
     private String phone;
     private String fax;
     private String address;
-    @Attribute(persistent=false)
-    private InverseModelListRef<ProductProducer, Producer> productProducerListRef = 
-        new InverseModelListRef<ProductProducer, Producer>(ProductProducer.class, "producerRef", this);
+    //Un produttore ha N prodotti
+    @Attribute(persistent = false)
+    private InverseModelListRef<Product, Producer> productListRef = 
+        new InverseModelListRef<Product, Producer>(Product.class, "producerRef", this,
+                //prodotti ordinati per nome in ordine ascendente
+                new Sort(ProductMeta.get().name.getName(), SortDirection.ASCENDING));
 
     /**
      * Returns the key.
@@ -117,10 +124,6 @@ public class Producer implements Serializable {
         this.address = address;
     }
 
-    public InverseModelListRef<ProductProducer, Producer> getProductProducerListRef() {
-        return productProducerListRef;
-    }
-
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -149,5 +152,9 @@ public class Producer implements Serializable {
             return false;
         }
         return true;
+    }
+
+    public InverseModelListRef<Product, Producer> getProductListRef() {
+        return productListRef;
     }
 }
