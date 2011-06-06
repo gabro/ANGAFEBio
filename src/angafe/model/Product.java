@@ -33,6 +33,11 @@ public class Product implements Serializable {
         new  InverseModelListRef<ProductRecipe, Product>(ProductRecipe.class,  "productRef", this);
     //Un prodotto ha 1 produttore
     private ModelRef<Producer> producerRef = new ModelRef<Producer>(Producer.class);
+    //Un prodotto ha N metodi di produzione
+    @Attribute(persistent = false)
+    private InverseModelListRef<ProductProductionMethod, Product> productProductionMethodListRef =
+        new InverseModelListRef<ProductProductionMethod, Product>(ProductProductionMethod.class, "productRef", this);
+    
     
     public final String getName() {
         return name;
@@ -140,5 +145,9 @@ public class Product implements Serializable {
 
     public ModelRef<Producer> getProducerRef() {
         return producerRef;
+    }
+
+    public InverseModelListRef<ProductProductionMethod, Product> getProductProductionMethodListRef() {
+        return productProductionMethodListRef;
     }
 }

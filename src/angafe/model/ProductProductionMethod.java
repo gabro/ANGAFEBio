@@ -1,17 +1,15 @@
 package angafe.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.images.Image;
 
 import org.slim3.datastore.Attribute;
-import org.slim3.datastore.InverseModelListRef;
 import org.slim3.datastore.Model;
+import org.slim3.datastore.ModelRef;
 
 @Model(schemaVersion = 1)
-public class ProductionMethod implements Serializable {
+public class ProductProductionMethod implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -21,13 +19,9 @@ public class ProductionMethod implements Serializable {
     @Attribute(version = true)
     private Long version;
 
-    private String name;
-    private String description;
-    @Attribute(lob = true)
-    private ArrayList<Image> photos;
-    @Attribute(persistent = false)
-    private InverseModelListRef<ProductProductionMethod, ProductionMethod> productProductionMethodListRef = 
-        new InverseModelListRef<ProductProductionMethod, ProductionMethod>(ProductProductionMethod.class, "productionMethodRef", this);
+    private ModelRef<Product> productRef = new ModelRef<Product>(Product.class);
+    private ModelRef<ProductionMethod> productionMethodRef = new ModelRef<ProductionMethod>(ProductionMethod.class);
+
     
     /**
      * Returns the key.
@@ -66,7 +60,7 @@ public class ProductionMethod implements Serializable {
     public void setVersion(Long version) {
         this.version = version;
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -86,7 +80,7 @@ public class ProductionMethod implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        ProductionMethod other = (ProductionMethod) obj;
+        ProductProductionMethod other = (ProductProductionMethod) obj;
         if (key == null) {
             if (other.key != null) {
                 return false;
@@ -97,31 +91,11 @@ public class ProductionMethod implements Serializable {
         return true;
     }
 
-    public final String getName() {
-        return name;
+    public ModelRef<Product> getProductRef() {
+        return productRef;
     }
 
-    public final void setName(String name) {
-        this.name = name;
-    }
-
-    public final String getDescription() {
-        return description;
-    }
-
-    public final void setDescription(String description) {
-        this.description = description;
-    }
-
-    public final ArrayList<Image> getPhotos() {
-        return photos;
-    }
-
-    public final void setPhotos(ArrayList<Image> photos) {
-        this.photos = photos;
-    }
-
-    public InverseModelListRef<ProductProductionMethod, ProductionMethod> getProductProductionMethodListRef() {
-        return productProductionMethodListRef;
+    public ModelRef<ProductionMethod> getProductionMethodRef() {
+        return productionMethodRef;
     }
 }
