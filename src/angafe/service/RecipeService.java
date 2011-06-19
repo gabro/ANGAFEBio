@@ -10,6 +10,7 @@ import angafe.model.Diet;
 import angafe.model.Recipe;
 import angafe.model.RecipeDiet;
 import angafe.model.SpecialNeed;
+import angafe.model.SpecialNeedRecipe;
 
 
 public class RecipeService {
@@ -28,8 +29,11 @@ public class RecipeService {
      *      una lista di ricette
      */
     public List<Recipe> getRecipes(SpecialNeed need) {
-        //TODO getRecipes(SpecialNeed need)
-        return null;
+        List<Recipe> recipes = new ArrayList<Recipe>();
+        for(SpecialNeedRecipe nr: need.getSpecialNeedRecipeListRef().getModelList()) {
+            recipes.add(nr.getRecipeRef().getModel());
+        }
+        return recipes;
     }
     
     /**

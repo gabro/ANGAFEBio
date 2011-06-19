@@ -16,6 +16,7 @@ import angafe.model.ProductSpecialOffer;
 import angafe.model.ProductionMethod;
 import angafe.model.Recipe;
 import angafe.model.SpecialNeed;
+import angafe.model.SpecialNeedProduct;
 import angafe.model.SpecialOffer;
 
 
@@ -64,8 +65,13 @@ public class ProductService {
     
     //Ritorna una lista dei prodotti di uno special need
     public List<Product> getProducts(SpecialNeed need) {
-        //TODO Implementare getProducts(SpecialNeed need)
-        return null;
+        List<Product> products = new ArrayList<Product>();
+
+        for(SpecialNeedProduct np: need.getSpecialNeedProductListRef().getModelList()) {
+            products.add(np.getProductRef().getModel());
+        }
+
+        return products;
     }
 
     public void addProduct(Product product) {

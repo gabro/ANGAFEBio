@@ -41,6 +41,10 @@ public class Recipe implements Serializable {
     private InverseModelListRef<RecipeDiet, Recipe> recipeDietListRef = 
         new InverseModelListRef<RecipeDiet, Recipe>(RecipeDiet.class, "recipeRef", this);
 
+    //Ogni ricetta appartiene a N diete
+    @Attribute(persistent = false)
+    private InverseModelListRef<SpecialNeedRecipe, Recipe> specialNeedRecipeListRef = 
+        new InverseModelListRef<SpecialNeedRecipe, Recipe>(SpecialNeedRecipe.class, "recipeRef", this);
     
     /**
      * Returns the key.
@@ -140,5 +144,9 @@ public class Recipe implements Serializable {
 
     public InverseModelListRef<RecipeDiet, Recipe> getRecipeDietListRef() {
         return recipeDietListRef;
+    }
+
+    public InverseModelListRef<SpecialNeedRecipe, Recipe> getSpecialNeedRecipeListRef() {
+        return specialNeedRecipeListRef;
     }
 }
