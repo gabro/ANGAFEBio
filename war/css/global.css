@@ -3,6 +3,12 @@
 h1 { 
 	height: 33px;
 	font-size: x-large;
+	text-align: center;
+}
+
+h2 {
+	height: 28px;
+	font-size: large;
 }
 
 a:hover { background-color: white; }
@@ -26,11 +32,15 @@ font-family: Verdana, Arial, Helvetica, sans-serif;
 b{font-size: 110%;}
 em{color: red;}
 
+p{
+	padding-left: 20px;
+	padding-right: 20px;
+}
 
 #header{
 	width:100%;
 	height:168px;
-	background:url(/resources/header.png) no-repeat top right;
+	background:url(/resources/header.png) repeat top right;
 }
 
 #contentwrapper{
@@ -47,13 +57,11 @@ em{color: red;}
 	width: 220px; /*Width of right column in pixels*/
 	margin-left: -220px; /*Set left margin to -(RightColumnWidth) */
 	background: #FDE95E;
+	background-color: orange;
 }
 
 #footer{
-	position: absolute;
-	bottom: 0px;
-	right: 0px;
-	clear: left;
+	clear: both;
 	width: 100%;
 	background: orange;
 	color: #FFF;
@@ -69,4 +77,59 @@ em{color: red;}
 .innertube{
 margin: 10px; /*Margins for inner DIV inside each column (to provide padding)*/
 margin-top: 0;
+}
+
+.product img{
+	float: left;
+	width: 200px;
+}
+
+.product h1{
+	text-align: left;
+}
+
+.product p{
+	padding-left: 20px; /*WidthImmagine + 20px*/
+}
+
+.producer img{
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	width: 100px;
+}
+
+.producer h1{
+	text-align: center;
+}
+
+.producer h2{
+	text-align: left;
+	padding-left:20px;
+}
+
+.producer p{
+	padding-left:20px;
+}
+
+.productlist table{
+	width: 80%;
+	margin: 20px 0px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.productlist table,
+.productlist th,
+.productlist td{
+border: 1px solid black;
+}
+
+.productlist tr td img{
+	width: 100px;
+	border-width: 1px;
+}
+
+.productlist .photo{
+	width: 100px;
 }

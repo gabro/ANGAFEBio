@@ -1,6 +1,7 @@
 package angafe.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import com.google.appengine.api.datastore.Key;
 
@@ -9,7 +10,7 @@ import org.slim3.datastore.InverseModelListRef;
 import org.slim3.datastore.Model;
 
 @Model(schemaVersion = 1)
-public class Diet implements Serializable {
+public class SpecialOffer implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -18,14 +19,15 @@ public class Diet implements Serializable {
 
     @Attribute(version = true)
     private Long version;
+
+    private String info;
+    private Date dataInizio;
+    private Date dataFine;
     
-    private String name;
-    private String genInfo;
-    
-    //Ogni dieta contiene N ricette
+    //Ogni offerta contiene N prodotti
     @Attribute(persistent = false)
-    private InverseModelListRef<RecipeDiet, Diet> recipeDietListRef = 
-        new InverseModelListRef<RecipeDiet, Diet>(RecipeDiet.class, "dietRef", this);
+    private InverseModelListRef<ProductSpecialOffer, SpecialOffer> productSpecialOfferListRef = 
+        new InverseModelListRef<ProductSpecialOffer, SpecialOffer>(ProductSpecialOffer.class, "specialOfferRef", this);    
     
     /**
      * Returns the key.
@@ -84,7 +86,7 @@ public class Diet implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Diet other = (Diet) obj;
+        SpecialOffer other = (SpecialOffer) obj;
         if (key == null) {
             if (other.key != null) {
                 return false;
@@ -95,24 +97,32 @@ public class Diet implements Serializable {
         return true;
     }
 
-    public void setGenInfo(String genInfo) {
-        this.genInfo = genInfo;
+    public void setInfo(String info) {
+        this.info = info;
     }
 
-    public String getGenInfo() {
-        return genInfo;
+    public String getInfo() {
+        return info;
     }
 
-    public InverseModelListRef<RecipeDiet, Diet> getRecipeDietListRef() {
-        return recipeDietListRef;
+    public InverseModelListRef<ProductSpecialOffer, SpecialOffer> getProductSpecialOfferListRef() {
+        return productSpecialOfferListRef;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDataInizio(Date dataInizio) {
+        this.dataInizio = dataInizio;
     }
 
-    public String getName() {
-        return name;
+    public Date getDataInizio() {
+        return dataInizio;
     }
-    
+
+    public void setDataFine(Date dataFine) {
+        this.dataFine = dataFine;
+    }
+
+    public Date getDataFine() {
+        return dataFine;
+    }
+
 }

@@ -3,13 +3,12 @@ package angafe.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.images.Image;
-
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.InverseModelListRef;
 import org.slim3.datastore.Model;
 import org.slim3.datastore.ModelRef;
+
+import com.google.appengine.api.datastore.Key;
 
 @Model(schemaVersion = 1)
 public class Product implements Serializable {
@@ -25,20 +24,32 @@ public class Product implements Serializable {
     private String name;
     private String description;
     private String healthBenefits;
-    @Attribute(lob = true)
-    private ArrayList<Image> photos;
+    //@Attribute(lob = true)
+    private ArrayList<String> photos = new ArrayList<String>();
+    
+    
     //Un prodotto ha N ricette
     @Attribute(persistent = false)
     private InverseModelListRef<ProductRecipe, Product> productRecipeListRef = 
         new  InverseModelListRef<ProductRecipe, Product>(ProductRecipe.class,  "productRef", this);
+    
     //Un prodotto ha 1 produttore
     private ModelRef<Producer> producerRef = new ModelRef<Producer>(Producer.class);
-    //Un prodotto ha N metodi di produzione
+    
+    //Un prodotto ha 1 metodo di produzione
+    private ModelRef<ProductionMethod> productionMethodRef = new ModelRef<ProductionMethod>(ProductionMethod.class);
+    
+    //Un prodotto è associato a N offerte
     @Attribute(persistent = false)
-    private InverseModelListRef<ProductProductionMethod, Product> productProductionMethodListRef =
-        new InverseModelListRef<ProductProductionMethod, Product>(ProductProductionMethod.class, "productRef", this);
-    
-    
+    private InverseModelListRef<ProductSpecialOffer, Product> productSpecialOfferListRef = 
+        new InverseModelListRef<ProductSpecialOffer, Product>(ProductSpecialOffer.class, "productRef", this);    
+
+    //Un prodotto è associato a N special need
+    @Attribute(persistent = false)
+    private InverseModelListRef<SpecialNeedProduct, Product> specialNeedProductListRef = 
+        new InverseModelListRef<SpecialNeedProduct, Product>(SpecialNeedProduct.class, "productRef", this);
+
+
     public final String getName() {
         return name;
     }
@@ -63,11 +74,11 @@ public class Product implements Serializable {
         this.healthBenefits = healthBenefits;
     }
 
-    public final ArrayList<Image> getPhotos() {
+    public final ArrayList<String> getPhotos() {
         return photos;
     }
 
-    public final void setPhotos(ArrayList<Image> photos) {
+    public final void setPhotos(ArrayList<String> photos) {
         this.photos = photos;
     }
     
@@ -147,7 +158,17 @@ public class Product implements Serializable {
         return producerRef;
     }
 
-    public InverseModelListRef<ProductProductionMethod, Product> getProductProductionMethodListRef() {
-        return productProductionMethodListRef;
+
+    public InverseModelListRef<ProductSpecialOffer, Product> getProductSpecialOfferListRef() {
+        return productSpecialOfferListRef;
+    }
+
+
+    public ModelRef<ProductionMethod> getProductionMethodRef() {
+        return productionMethodRef;
+    }
+
+    public InverseModelListRef<SpecialNeedProduct, Product> getSpecialNeedProductListRef() {
+        return specialNeedProductListRef;
     }
 }

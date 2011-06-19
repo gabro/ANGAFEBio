@@ -1,18 +1,18 @@
-package angafe.controller.angafe;
+package angafe.controller.angafe.product;
 
 import org.slim3.tester.ControllerTestCase;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
-public class ProductControllerTest extends ControllerTestCase {
+public class AddControllerTest extends ControllerTestCase {
 
     @Test
     public void run() throws Exception {
-        tester.start("/angafe/product");
-        ProductController controller = tester.getController();
+        tester.start("/angafe/product/add");
+        AddController controller = tester.getController();
         assertThat(controller, is(notNullValue()));
         assertThat(tester.isRedirect(), is(false));
-        assertThat(tester.getDestinationPath(), is("/angafe/product.jsp"));
+        assertThat(tester.getDestinationPath(), is("/angafe/product/add.jsp"));
     }
 }

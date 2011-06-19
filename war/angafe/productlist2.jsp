@@ -19,16 +19,50 @@
 
 <div id="contentwrapper">
 	<div id="contentcolumn">
-		<p class="title">ANGAFE BIO</p>
-		<div align="center">
-		<img src="/resources/home.jpg" width="70%" />
+		<div class="product">
+				<!-- <br />
+							<br />
+							<table>
+								<tr>
+									<td class="photo">
+										<a href="/angafe/product/mela"><img src="/resources/products/mela.png"></a>
+									</td>
+									<td>
+										Red Love - Mela
+									</td>
+								</tr>
+								<tr>
+									<td class="photo">
+										<a href="#"><img src="/resources/product/fragola.png"></a>
+									</td>
+									<td>
+										Fragola
+									</td>
+								</tr>
+								<tr>
+									<td class="photo">
+										<a href="#"><img src="/resources/product/pera.png"></a>
+									</td>
+									<td>
+										Pera
+									</td>
+								</tr>
+								<tr>
+									<td class="photo">
+										<a href="#"><img src="/resources/product/carciofo.png"></a>
+									</td>
+									<td>
+										Carciofo
+									</td>
+								</tr> -->
 		</div>
-		
 	</div>
 </div>
 
 <div id="rightcolumn">
+	<div class="innertube">
 		<jsp:include page="/includes/sidemenu.jsp" flush="true" />
+	</div>
 </div>
 
 <div id="footer">Realizzazione a cura di <b>Andrea Villa</b>, <b>Federico Pellegatta</b> e <b>Gabriele Petronella</b></a></div>

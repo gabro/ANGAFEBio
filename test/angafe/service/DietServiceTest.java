@@ -1,16 +1,16 @@
-package angafe.model;
+package angafe.service;
 
 import org.slim3.tester.AppEngineTestCase;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
-public class ProductProducerTest extends AppEngineTestCase {
+public class DietServiceTest extends AppEngineTestCase {
 
-    private ProductRecipe model = new ProductRecipe();
+    private DietService service = new DietService();
 
     @Test
     public void test() throws Exception {
-        assertThat(model, is(notNullValue()));
+        assertThat(service, is(notNullValue()));
     }
 }

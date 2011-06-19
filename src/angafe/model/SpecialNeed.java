@@ -2,14 +2,14 @@ package angafe.model;
 
 import java.io.Serializable;
 
-import com.google.appengine.api.datastore.Key;
-
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.InverseModelListRef;
 import org.slim3.datastore.Model;
 
+import com.google.appengine.api.datastore.Key;
+
 @Model(schemaVersion = 1)
-public class Diet implements Serializable {
+public class SpecialNeed implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -20,12 +20,11 @@ public class Diet implements Serializable {
     private Long version;
     
     private String name;
-    private String genInfo;
     
-    //Ogni dieta contiene N ricette
     @Attribute(persistent = false)
-    private InverseModelListRef<RecipeDiet, Diet> recipeDietListRef = 
-        new InverseModelListRef<RecipeDiet, Diet>(RecipeDiet.class, "dietRef", this);
+    private InverseModelListRef<SpecialNeedProduct, SpecialNeed> specialNeedProductListRef = 
+        new InverseModelListRef<SpecialNeedProduct, SpecialNeed>(SpecialNeedProduct.class, "specialNeedRef", this);
+
     
     /**
      * Returns the key.
@@ -84,7 +83,7 @@ public class Diet implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Diet other = (Diet) obj;
+        SpecialNeed other = (SpecialNeed) obj;
         if (key == null) {
             if (other.key != null) {
                 return false;
@@ -95,18 +94,6 @@ public class Diet implements Serializable {
         return true;
     }
 
-    public void setGenInfo(String genInfo) {
-        this.genInfo = genInfo;
-    }
-
-    public String getGenInfo() {
-        return genInfo;
-    }
-
-    public InverseModelListRef<RecipeDiet, Diet> getRecipeDietListRef() {
-        return recipeDietListRef;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -114,5 +101,8 @@ public class Diet implements Serializable {
     public String getName() {
         return name;
     }
-    
+
+    public InverseModelListRef<SpecialNeedProduct, SpecialNeed> getSpecialNeedProductListRef() {
+        return specialNeedProductListRef;
+    }
 }

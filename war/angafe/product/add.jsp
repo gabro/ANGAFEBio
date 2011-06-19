@@ -19,10 +19,7 @@
 
 <div id="contentwrapper">
 	<div id="contentcolumn">
-		<p class="title">ANGAFE BIO</p>
-		<div align="center">
-		<img src="/resources/home.jpg" width="70%" />
-		</div>
+	
 		
 	</div>
 </div>

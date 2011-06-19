@@ -5,11 +5,11 @@ import java.io.Serializable;
 import com.google.appengine.api.datastore.Key;
 
 import org.slim3.datastore.Attribute;
-import org.slim3.datastore.InverseModelListRef;
 import org.slim3.datastore.Model;
+import org.slim3.datastore.ModelRef;
 
 @Model(schemaVersion = 1)
-public class Diet implements Serializable {
+public class SpecialNeedProduct implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -18,14 +18,10 @@ public class Diet implements Serializable {
 
     @Attribute(version = true)
     private Long version;
-    
-    private String name;
-    private String genInfo;
-    
-    //Ogni dieta contiene N ricette
-    @Attribute(persistent = false)
-    private InverseModelListRef<RecipeDiet, Diet> recipeDietListRef = 
-        new InverseModelListRef<RecipeDiet, Diet>(RecipeDiet.class, "dietRef", this);
+
+    private ModelRef<Product> productRef = new ModelRef<Product>(Product.class);
+    private ModelRef<SpecialNeed> specialNeedRef = new ModelRef<SpecialNeed>(SpecialNeed.class);
+
     
     /**
      * Returns the key.
@@ -84,7 +80,7 @@ public class Diet implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Diet other = (Diet) obj;
+        SpecialNeedProduct other = (SpecialNeedProduct) obj;
         if (key == null) {
             if (other.key != null) {
                 return false;
@@ -95,24 +91,11 @@ public class Diet implements Serializable {
         return true;
     }
 
-    public void setGenInfo(String genInfo) {
-        this.genInfo = genInfo;
+    public ModelRef<Product> getProductRef() {
+        return productRef;
     }
 
-    public String getGenInfo() {
-        return genInfo;
+    public ModelRef<SpecialNeed> getSpecialNeedRef() {
+        return specialNeedRef;
     }
-
-    public InverseModelListRef<RecipeDiet, Diet> getRecipeDietListRef() {
-        return recipeDietListRef;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-    
 }

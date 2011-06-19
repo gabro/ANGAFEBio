@@ -5,14 +5,14 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
-public class IndexControllerTest extends ControllerTestCase {
+public class ServiceControllerTest extends ControllerTestCase {
 
     @Test
     public void run() throws Exception {
-        tester.start("/angafe/");
-        IndexController controller = tester.getController();
+        tester.start("/angafe/service");
+        ServiceController controller = tester.getController();
         assertThat(controller, is(notNullValue()));
         assertThat(tester.isRedirect(), is(false));
-        assertThat(tester.getDestinationPath(), is("/angafe/index.jsp"));
+        assertThat(tester.getDestinationPath(), is("/angafe/service.jsp"));
     }
 }

@@ -5,9 +5,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
-public class ProductionMethodTest extends AppEngineTestCase {
+public class SpecialOfferTest extends AppEngineTestCase {
 
-    private ProductionMethod model = new ProductionMethod();
+    private SpecialOffer model = new SpecialOffer();
 
     @Test
     public void test() throws Exception {

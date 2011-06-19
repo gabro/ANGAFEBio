@@ -6,8 +6,9 @@
 
 ul.arrowunderline{
 list-style-type:none;
-margin:0;
-margin-right:50px;
+margin: 0 0;
+margin-right: 30px;
+margin-top: 10px;
 padding:0;
 text-align:right; /* enter "left", "right", or "center" to orient the menu accordingly */
 font: bold 14px Arial;
