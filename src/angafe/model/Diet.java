@@ -1,20 +1,16 @@
 package angafe.model;
 
 import java.io.Serializable;
-
-import angafe.meta.ProductMeta;
+import java.util.ArrayList;
 
 import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.Query.SortDirection;
-import com.google.appengine.api.images.Image;
 
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.InverseModelListRef;
 import org.slim3.datastore.Model;
-import org.slim3.datastore.Sort;
 
 @Model(schemaVersion = 1)
-public class Recipe implements Serializable {
+public class Diet implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -23,24 +19,13 @@ public class Recipe implements Serializable {
 
     @Attribute(version = true)
     private Long version;
-
-    private String name;
-    private String directions;
-    @Attribute(lob = true)
-    private Image photo;
     
-    //Una ricetta ha N prodotti
-    @Attribute(persistent=false)
-    private InverseModelListRef<ProductRecipe, Recipe> productRecipeListRef = 
-        new InverseModelListRef<ProductRecipe, Recipe>(ProductRecipe.class, "recipeRef", this,
-                //prodotti ordinati per nome in ordine ascendente
-                new Sort(ProductMeta.get().name.getName(), SortDirection.ASCENDING));
+    private String genInfo;
     
-    //Ogni ricetta appartiene a N diete
+    //Ogni dieta contiene N ricette
     @Attribute(persistent = false)
-    private InverseModelListRef<RecipeDiet, Recipe> recipeDietListRef = 
-        new InverseModelListRef<RecipeDiet, Recipe>(RecipeDiet.class, "recipeRef", this);
-
+    private InverseModelListRef<RecipeDiet, Diet> recipeDietListRef = 
+        new InverseModelListRef<RecipeDiet, Diet>(RecipeDiet.class, "dietRef", this);
     
     /**
      * Returns the key.
@@ -99,7 +84,7 @@ public class Recipe implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Recipe other = (Recipe) obj;
+        Diet other = (Diet) obj;
         if (key == null) {
             if (other.key != null) {
                 return false;
@@ -110,35 +95,16 @@ public class Recipe implements Serializable {
         return true;
     }
 
-    public InverseModelListRef<ProductRecipe, Recipe> getProductRecipeListRef() {
-        return productRecipeListRef;
+    public void setGenInfo(String genInfo) {
+        this.genInfo = genInfo;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getGenInfo() {
+        return genInfo;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setDirections(String directions) {
-        this.directions = directions;
-    }
-
-    public String getDirections() {
-        return directions;
-    }
-
-    public void setPhoto(Image photo) {
-        this.photo = photo;
-    }
-
-    public Image getPhoto() {
-        return photo;
-    }
-
-    public InverseModelListRef<RecipeDiet, Recipe> getRecipeDietListRef() {
+    public InverseModelListRef<RecipeDiet, Diet> getRecipeDietListRef() {
         return recipeDietListRef;
     }
+    
 }
