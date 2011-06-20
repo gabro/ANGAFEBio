@@ -27,10 +27,13 @@ public class Producer implements Serializable {
     
     private String name;
     private String description;
-    private Email email;
+    private String email;
     private String phone;
     private String fax;
     private String address;
+    @Attribute(lob = true)
+    private Photo photo;
+    
     //Un produttore ha N prodotti
     @Attribute(persistent = false)
     private InverseModelListRef<Product, Producer> productListRef = 
@@ -92,11 +95,11 @@ public class Producer implements Serializable {
         this.description = description;
     }
 
-    public final Email getEmail() {
+    public final String getEmail() {
         return email;
     }
 
-    public final void setEmail(Email email) {
+    public final void setEmail(String email) {
         this.email = email;
     }
 
@@ -156,5 +159,13 @@ public class Producer implements Serializable {
 
     public InverseModelListRef<Product, Producer> getProductListRef() {
         return productListRef;
+    }
+
+    public void setPhoto(Photo photo) {
+        this.photo = photo;
+    }
+
+    public Photo getPhoto() {
+        return photo;
     }
 }

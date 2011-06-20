@@ -22,12 +22,24 @@
 		<table>
 			<form enctype="multipart/form-data" method="post" action="load?action=add">
 				<tr>
-					<td>Nome</td>
+					<td>Name</td>
 					<td><input type="text" name="name"/></td>
 				</tr>
 				<tr>
-					<td>Descrizione</td>
+					<td>Description</td>
 					<td><textarea name="description"></textarea></td>
+				</tr>
+				<tr>
+					<td>Health Benefits</td>
+					<td><textarea name="healthBenefits"></textarea></td>
+				</tr>
+				<tr>
+					<td>Produttore</td>
+					<td><select name="producerId">
+						<c:forEach var="p" items="${allProducers}">
+						<option value="${f:h(p.key.id)}">${f:h(p.name)}</option>
+						</c:forEach>
+					</td>
 				</tr>
 				<tr>
 					<td>Carica foto</td>

@@ -30,6 +30,18 @@
 					<td><textarea name="description">${f:h(product.description)}</textarea></td>
 				</tr>
 				<tr>
+					<td>Health Benefits</td>
+					<td><textarea name="healthBenefits">${f:h(product.healthBenefits)}</textarea></td>
+				</tr>
+				<tr>
+					<td>Produttore</td>
+					<td><select name="producerId">
+						<c:forEach var="p" items="${allProducers}">
+						<option value="${f:h(p.key.id)}">${f:h(p.name)}</option>
+						</c:forEach>
+					</td>
+				</tr>
+				<tr>
 					<td>
 						Foto attuale
 					</td>

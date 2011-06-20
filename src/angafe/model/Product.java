@@ -24,10 +24,10 @@ public class Product implements Serializable {
     private String name;
     @Attribute(lob = true)
     private String description;
+    @Attribute(lob = true)
     private String healthBenefits;
     @Attribute(lob = true)
     private Photo photo;
-    private ArrayList<String> photos = new ArrayList<String>();
     
     //Un prodotto ha N ricette
     @Attribute(persistent = false)
@@ -75,14 +75,6 @@ public class Product implements Serializable {
         this.healthBenefits = healthBenefits;
     }
 
-    public final ArrayList<String> getPhotos() {
-        return photos;
-    }
-
-    public final void setPhotos(ArrayList<String> photos) {
-        this.photos = photos;
-    }
-    
     /**
      * Returns the key.
      *

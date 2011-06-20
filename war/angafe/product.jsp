@@ -22,6 +22,7 @@
 		<div class="product">
 			<img src="/angafe/image?imgId=${f:h(product.photo.key.id)}" />
 			<h1>${f:h(product.name)}</h1>
+			<p>Produttore: <a href="/angafe/producer?id=${f:h(product.producerRef.model.key.id)}">${f:h(product.producerRef.model.name)}</a></p>
 			<p>DESCRIZIONE DEL PRODOTTO</p>
 			<p>${f:h(product.description)}</p>
 		</div>

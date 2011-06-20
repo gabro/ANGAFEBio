@@ -1,4 +1,4 @@
-package angafe.controller.angafe.product;
+package angafe.controller.angafe.producer;
 
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
@@ -8,16 +8,13 @@ import org.slim3.util.RequestMap;
 
 import angafe.model.Photo;
 import angafe.model.Producer;
-import angafe.model.Product;
 import angafe.service.PhotoService;
 import angafe.service.ProducerService;
-import angafe.service.ProductService;
 
 import com.google.appengine.api.datastore.Key;
 
 public class LoadController extends Controller {
 
-    ProductService productService = new ProductService();
     ProducerService producerService = new ProducerService();
     PhotoService photoService = new PhotoService();
     
@@ -29,13 +26,6 @@ public class LoadController extends Controller {
         FileItem fileItem = requestScope("img");
         //Creo una requestMap
         RequestMap input = new RequestMap(request);
-        //Recupero l'id e la chiave del produttore
-        long producerId = Long.decode((String)request.getAttribute("producerId"));
-        Key producerKey = Datastore.createKey(Producer.class, producerId);
-        //Recupero il produttore
-        Producer producer = producerService.getProducer(producerKey);
-        //Aggiungo il produttore alla RequestMap
-        input.put("producer",producer);
         
         //Se è stata caricata una foto la aggiungo alla RequestMap
         if(fileItem != null) {
@@ -46,13 +36,13 @@ public class LoadController extends Controller {
         //Se è un'azione di modifica recupero la chiave e chiamo il metodo di edit
         if(action.equals("edit")) {
             long id = Long.decode((String)request.getParameter("id"));
-            Key prodKey = Datastore.createKey(Product.class, id);
-            productService.editProduct(prodKey, input);
+            Key prodKey = Datastore.createKey(Producer.class, id);
+            producerService.editProducer(prodKey, input);
         }
         
         //Se è un'azione di aggiunta chiamo il metodo di add
         if(action.equals("add")) {
-            productService.addProduct(input);
+            producerService.addProducer(input);
         }
         
         return redirect("/angafe/editor");

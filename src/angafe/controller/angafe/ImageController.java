@@ -5,13 +5,13 @@ import org.slim3.controller.Navigation;
 import org.slim3.datastore.Datastore;
 
 import angafe.model.Photo;
-import angafe.service.ProductService;
+import angafe.service.PhotoService;
 
 import com.google.appengine.api.datastore.Key;
 
 public class ImageController extends Controller {
     
-    ProductService service = new ProductService();
+    PhotoService service = new PhotoService();
     
     @Override
     public Navigation run() throws Exception {

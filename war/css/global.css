@@ -79,6 +79,10 @@ margin: 10px; /*Margins for inner DIV inside each column (to provide padding)*/
 margin-top: 0;
 }
 
+.hidden{
+	display: none;
+}
+
 .product img{
 	float: left;
 	width: 200px;

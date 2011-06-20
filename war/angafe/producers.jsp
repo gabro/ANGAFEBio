@@ -19,13 +19,21 @@
 
 <div id="contentwrapper">
 	<div id="contentcolumn">
-		<div class="list">
-			<ul>
-				<li><a href="/angafe/producer/biofrutta">BioFrutta</a></li>
-				<li><a href="#">FoodExpress</a></li>
-				<li><a href="#">NaturalBioLab</a></li>
-				<li><a href="#">blablblal</a></li>
-			</ul>
+		<div class="productlist">
+			<a href="/angafe/producer?id=${producer.key.id}" class="${visibility}"><-- ${f:h(backText)}</a>
+			<h1>${f:h(title)}</h1>
+		<table>
+			<c:forEach var="p" items="${producers}">
+			<tr>
+				<td class="photo">
+					<img src="/angafe/image?imgId=${f:h(p.photo.key.id)}" />
+				</td>
+				<td>
+					<a href="/angafe/producer?id=${f:h(p.key.id)}">${f:h(p.name)}</a>
+				</td>
+			</tr>
+			</c:forEach>
+		</table>
 		</div>
 	</div>
 </div>

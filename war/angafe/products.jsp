@@ -20,8 +20,10 @@
 <div id="contentwrapper">
 	<div id="contentcolumn">
 		<div class="productlist">
+			<a href="/angafe/producer?id=${producer.key.id}" class="${visibility}"><-- ${f:h(backText)}</a>
+			<h1>${f:h(title)}</h1>
 		<table>
-			<c:forEach var="p" items="${allProducts}">
+			<c:forEach var="p" items="${products}">
 			<tr>
 				<td class="photo">
 					<img src="/angafe/image?imgId=${f:h(p.photo.key.id)}" />
