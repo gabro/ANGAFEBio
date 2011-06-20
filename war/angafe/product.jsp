@@ -19,31 +19,19 @@
 
 <div id="contentwrapper">
 	<div id="contentcolumn">
-		<table>
-			<form enctype="multipart/form-data" method="post" action="load?action=add">
-				<tr>
-					<td>Nome</td>
-					<td><input type="text" name="name"/></td>
-				</tr>
-				<tr>
-					<td>Descrizione</td>
-					<td><textarea name="description"></textarea></td>
-				</tr>
-				<tr>
-					<td>Carica foto</td>
-					<td><input type="file" name="img"></textarea></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><input type="submit" value="Invia"></td>
-				</tr>
-			</form>
-		</table>	
+		<div class="product">
+			<img src="/angafe/image?imgId=${f:h(product.photo.key.id)}" />
+			<h1>${f:h(product.name)}</h1>
+			<p>DESCRIZIONE DEL PRODOTTO</p>
+			<p>${f:h(product.description)}</p>
+		</div>
 	</div>
 </div>
 
 <div id="rightcolumn">
+	<div class="innertube">
 		<jsp:include page="/includes/sidemenu.jsp" flush="true" />
+	</div>
 </div>
 
 <div id="footer">Realizzazione a cura di <b>Andrea Villa</b>, <b>Federico Pellegatta</b> e <b>Gabriele Petronella</b></a></div>

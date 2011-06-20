@@ -27,6 +27,11 @@ public class Diet implements Serializable {
     private InverseModelListRef<RecipeDiet, Diet> recipeDietListRef = 
         new InverseModelListRef<RecipeDiet, Diet>(RecipeDiet.class, "dietRef", this);
     
+    //Ogni dieta ha N Special Need
+    @Attribute(persistent = false)
+    private InverseModelListRef<SpecialNeedDiet, Diet> specialNeedDietListRef = 
+        new InverseModelListRef<SpecialNeedDiet, Diet>(SpecialNeedDiet.class, "dietRef", this);
+
     /**
      * Returns the key.
      *
@@ -113,6 +118,10 @@ public class Diet implements Serializable {
 
     public String getName() {
         return name;
+    }
+
+    public InverseModelListRef<SpecialNeedDiet, Diet> getSpecialNeedDietListRef() {
+        return specialNeedDietListRef;
     }
     
 }

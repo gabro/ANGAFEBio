@@ -28,6 +28,12 @@ public class SpecialNeed implements Serializable {
     @Attribute(persistent = false)
     private InverseModelListRef<SpecialNeedRecipe, SpecialNeed> specialNeedRecipeListRef = 
         new InverseModelListRef<SpecialNeedRecipe, SpecialNeed>(SpecialNeedRecipe.class, "specialNeedRef", this);
+
+    @Attribute(persistent = false)
+    private InverseModelListRef<SpecialNeedDiet, SpecialNeed> specialNeedDietListRef = 
+        new InverseModelListRef<SpecialNeedDiet, SpecialNeed>(SpecialNeedDiet.class, "specialNeedRef", this);
+
+
     
     /**
      * Returns the key.
@@ -111,5 +117,9 @@ public class SpecialNeed implements Serializable {
 
     public InverseModelListRef<SpecialNeedRecipe, SpecialNeed> getSpecialNeedRecipeListRef() {
         return specialNeedRecipeListRef;
+    }
+
+    public InverseModelListRef<SpecialNeedDiet, SpecialNeed> getSpecialNeedDietListRef() {
+        return specialNeedDietListRef;
     }
 }

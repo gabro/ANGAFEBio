@@ -2,14 +2,13 @@ package angafe.model;
 
 import java.io.Serializable;
 
-import com.google.appengine.api.datastore.Key;
-
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.Model;
-import org.slim3.datastore.ModelRef;
+
+import com.google.appengine.api.datastore.Key;
 
 @Model(schemaVersion = 1)
-public class SpecialNeedProduct implements Serializable {
+public class Photo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -19,8 +18,12 @@ public class SpecialNeedProduct implements Serializable {
     @Attribute(version = true)
     private Long version;
 
-    private ModelRef<Product> productRef = new ModelRef<Product>(Product.class);
-    private ModelRef<SpecialNeed> specialNeedRef = new ModelRef<SpecialNeed>(SpecialNeed.class);
+    @Attribute(lob = true)
+    private byte[] bytes;
+    
+    private String fileName;
+    
+    private int length;
     
     /**
      * Returns the key.
@@ -79,7 +82,7 @@ public class SpecialNeedProduct implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        SpecialNeedProduct other = (SpecialNeedProduct) obj;
+        Photo other = (Photo) obj;
         if (key == null) {
             if (other.key != null) {
                 return false;
@@ -90,11 +93,27 @@ public class SpecialNeedProduct implements Serializable {
         return true;
     }
 
-    public ModelRef<Product> getProductRef() {
-        return productRef;
+    public void setBytes(byte[] bytes) {
+        this.bytes = bytes;
     }
 
-    public ModelRef<SpecialNeed> getSpecialNeedRef() {
-        return specialNeedRef;
+    public byte[] getBytes() {
+        return bytes;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public int getLength() {
+        return length;
     }
 }

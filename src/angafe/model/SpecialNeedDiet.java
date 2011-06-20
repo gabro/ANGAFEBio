@@ -9,7 +9,7 @@ import org.slim3.datastore.Model;
 import org.slim3.datastore.ModelRef;
 
 @Model(schemaVersion = 1)
-public class SpecialNeedProduct implements Serializable {
+public class SpecialNeedDiet implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -19,7 +19,7 @@ public class SpecialNeedProduct implements Serializable {
     @Attribute(version = true)
     private Long version;
 
-    private ModelRef<Product> productRef = new ModelRef<Product>(Product.class);
+    private ModelRef<Diet> dietRef = new ModelRef<Diet>(Diet.class);
     private ModelRef<SpecialNeed> specialNeedRef = new ModelRef<SpecialNeed>(SpecialNeed.class);
     
     /**
@@ -79,7 +79,7 @@ public class SpecialNeedProduct implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        SpecialNeedProduct other = (SpecialNeedProduct) obj;
+        SpecialNeedDiet other = (SpecialNeedDiet) obj;
         if (key == null) {
             if (other.key != null) {
                 return false;
@@ -90,8 +90,8 @@ public class SpecialNeedProduct implements Serializable {
         return true;
     }
 
-    public ModelRef<Product> getProductRef() {
-        return productRef;
+    public ModelRef<Diet> getDietRef() {
+        return dietRef;
     }
 
     public ModelRef<SpecialNeed> getSpecialNeedRef() {

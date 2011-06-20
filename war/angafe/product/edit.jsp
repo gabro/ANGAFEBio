@@ -20,17 +20,25 @@
 <div id="contentwrapper">
 	<div id="contentcolumn">
 		<table>
-			<form enctype="multipart/form-data" method="post" action="load?action=add">
+			<form enctype="multipart/form-data" method="post" action="load?action=edit&id=${f:h(product.key.id)}">
 				<tr>
 					<td>Nome</td>
-					<td><input type="text" name="name"/></td>
+					<td><input type="text" name="name" value="${f:h(product.name)}"/></td>
 				</tr>
 				<tr>
 					<td>Descrizione</td>
-					<td><textarea name="description"></textarea></td>
+					<td><textarea name="description">${f:h(product.description)}</textarea></td>
 				</tr>
 				<tr>
-					<td>Carica foto</td>
+					<td>
+						Foto attuale
+					</td>
+					<td>
+						<img src="/angafe/image?imgId=${f:h(product.photo.key.id)}" />
+					</td>
+				</tr>
+				<tr>
+					<td>Cambia foto</td>
 					<td><input type="file" name="img"></textarea></td>
 				</tr>
 				<tr>

@@ -6,8 +6,8 @@
 
 <div id="sidemenu">
 <ul>
-	<li><a href=/angafe/product>Products</a></li>
-	<li><a href=/angafe/producer>Producers</a></li>
+	<li><a href=/angafe/products>Products</a></li>
+	<li><a href=/angafe/producers>Producers</a></li>
 	<li><a href=#>Production Methods</a></li>
 	<li><a href=#>Recipes</a></li>
 	<li><a href=#>Diets</a></li>	

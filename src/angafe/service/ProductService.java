@@ -2,13 +2,15 @@ package angafe.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import org.slim3.controller.upload.FileItem;
 import org.slim3.datastore.Datastore;
+import org.slim3.util.BeanUtil;
 
-import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.Transaction;
-
+import angafe.meta.PhotoMeta;
 import angafe.meta.ProductMeta;
+import angafe.model.Photo;
 import angafe.model.Producer;
 import angafe.model.Product;
 import angafe.model.ProductRecipe;
@@ -19,10 +21,15 @@ import angafe.model.SpecialNeed;
 import angafe.model.SpecialNeedProduct;
 import angafe.model.SpecialOffer;
 
+import com.google.appengine.api.datastore.Blob;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.Transaction;
+
 
 public class ProductService {
 
     private ProductMeta p = new ProductMeta();
+    private PhotoMeta ph = new PhotoMeta();
     
     //Ritorna una lista di tutti i prodotti
     public List<Product> getProducts() {
@@ -87,5 +94,55 @@ public class ProductService {
         }
         Datastore.delete(keys);
     }
+
+    public Product addProduct(Map<String,Object> input) {
+        Product product = new Product();
+        BeanUtil.copy(input, product);
+        Transaction tx = Datastore.beginTransaction();
+        Datastore.put(product);
+        tx.commit();
+        return product;        
+    }
+
+    public Photo upload(FileItem file) {
+        if (file == null) {
+            return null;
+        }
         
+        Photo photo = new Photo();
+        photo.setKey(Datastore.allocateId(ph));
+        photo.setFileName(file.getShortFileName());
+        photo.setLength(file.getData().length);
+        byte[] bytes = file.getData();
+        photo.setBytes(bytes);
+        
+        Transaction tx = Datastore.beginTransaction();
+        Datastore.put(tx, photo);
+        tx.commit();
+        return photo;
+    }
+    
+    public Photo getPhoto(Key key) {
+        return Datastore.get(ph, key);
+    }
+    
+    
+    public void deleteProduct(Key key) {
+        Transaction tx = Datastore.beginTransaction();
+        Datastore.delete(tx, key);
+        tx.commit();
+    }
+
+    public Product getProduct(Key key) {
+        return Datastore.get(p, key);
+    }
+
+    public void editProduct(Key prodKey,Map<String,Object> input) {
+        Product product = Datastore.get(p, prodKey);
+        BeanUtil.copy(input, product);
+        Transaction tx = Datastore.beginTransaction();
+        Datastore.put(product);
+        tx.commit();
+    }
+
 }

@@ -20,25 +20,52 @@
 <div id="contentwrapper">
 	<div id="contentcolumn">
 		<table>
-			<form enctype="multipart/form-data" method="post" action="load?action=add">
-				<tr>
-					<td>Nome</td>
-					<td><input type="text" name="name"/></td>
-				</tr>
-				<tr>
-					<td>Descrizione</td>
-					<td><textarea name="description"></textarea></td>
-				</tr>
-				<tr>
-					<td>Carica foto</td>
-					<td><input type="file" name="img"></textarea></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><input type="submit" value="Invia"></td>
-				</tr>
-			</form>
-		</table>	
+			<th>
+				PRODUCTS
+			</th>
+			<c:forEach var="p" items="${allProducts}">
+			<tr>
+				<td>
+					${f:h(p.name)}
+				</td>
+				<td>
+					<a href="/angafe/product/edit?id=${f:h(p.key.id)}">Edit</a>
+				</td>
+				<td>
+					<a href="/angafe/product/delete?id=${f:h(p.key.id)}">Delete</a>
+				</td>	
+			</tr>
+		</c:forEach>
+		<tr>
+			<td>
+				<a href="/angafe/product/add">Add</a>
+			</td>
+		</tr>
+	</table>
+	<br />
+	<table>
+		<th>
+			PRODUCERS
+		</th>
+		<c:forEach var="p" items="${allProducers}">
+		<tr>
+			<td>
+				${f:h(p.name)}
+			</td>
+			<td>
+				<a href="/angafe/producer/edit?id=${f:h(p.key.id)}">Edit</a>
+			</td>
+			<td>
+				<a href="/angafe/producer/delete?id=${f:h(p.key.id)}">Delete</a>
+			</td>	
+		</tr>
+	</c:forEach>
+	<tr>
+		<td>
+			<a href="/angafe/producer/add">Add</a>
+		</td>
+	</tr>
+</table>
 	</div>
 </div>
 

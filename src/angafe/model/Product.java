@@ -22,11 +22,12 @@ public class Product implements Serializable {
     private Long version;
 
     private String name;
+    @Attribute(lob = true)
     private String description;
     private String healthBenefits;
-    //@Attribute(lob = true)
+    @Attribute(lob = true)
+    private Photo photo;
     private ArrayList<String> photos = new ArrayList<String>();
-    
     
     //Un prodotto ha N ricette
     @Attribute(persistent = false)
@@ -170,5 +171,13 @@ public class Product implements Serializable {
 
     public InverseModelListRef<SpecialNeedProduct, Product> getSpecialNeedProductListRef() {
         return specialNeedProductListRef;
+    }
+
+    public void setPhoto(Photo photo) {
+        this.photo = photo;
+    }
+
+    public Photo getPhoto() {
+        return photo;
     }
 }
