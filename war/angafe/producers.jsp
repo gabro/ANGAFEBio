@@ -19,7 +19,7 @@
 
 <div id="contentwrapper">
 	<div id="contentcolumn">
-		<div class="productlist">
+		<div class="list">
 			<a href="/angafe/producer?id=${producer.key.id}" class="${visibility}"><-- ${f:h(backText)}</a>
 			<h1>${f:h(title)}</h1>
 		<table>

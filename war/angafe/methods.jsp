@@ -20,16 +20,16 @@
 <div id="contentwrapper">
 	<div id="contentcolumn">
 		<div class="list">
-			<a href="/angafe/product?id=${product.key.id}" class="${visibility}"><-- ${f:h(backText)}</a>
+			<a href="/angafe/producer?id=${producer.key.id}" class="${visibility}"><-- ${f:h(backText)}</a>
 			<h1>${f:h(title)}</h1>
 		<table>
-			<c:forEach var="r" items="${recipes}">
+			<c:forEach var="m" items="${methods}">
 			<tr>
 				<td class="photo">
-					<img src="/angafe/image?imgId=${f:h(r.photo.key.id)}" />
+					<img src="/angafe/image?imgId=${f:h(m.photo.key.id)}" />
 				</td>
 				<td>
-					<a href="/angafe/recipe?id=${f:h(r.key.id)}">${f:h(r.name)}</a>
+					<a href="/angafe/method?id=${f:h(m.key.id)}">${f:h(m.name)}</a>
 				</td>
 			</tr>
 			</c:forEach>

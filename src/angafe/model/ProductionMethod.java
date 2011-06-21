@@ -1,18 +1,16 @@
 package angafe.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-
-import angafe.meta.ProductMeta;
-
-import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.Query.SortDirection;
-import com.google.appengine.api.images.Image;
 
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.InverseModelListRef;
 import org.slim3.datastore.Model;
 import org.slim3.datastore.Sort;
+
+import angafe.meta.ProductMeta;
+
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.Query.SortDirection;
 
 @Model(schemaVersion = 1)
 public class ProductionMethod implements Serializable {
@@ -29,7 +27,7 @@ public class ProductionMethod implements Serializable {
     private String description;
    
     @Attribute(lob = true)
-    private ArrayList<Image> photos;
+    private Photo photo;
     
     //Un metodo di produzione si applica a N prodotti
     @Attribute(persistent = false)
@@ -122,15 +120,15 @@ public class ProductionMethod implements Serializable {
         this.description = description;
     }
 
-    public final ArrayList<Image> getPhotos() {
-        return photos;
-    }
-
-    public final void setPhotos(ArrayList<Image> photos) {
-        this.photos = photos;
-    }
-
     public InverseModelListRef<Product, ProductionMethod> getProductListRef() {
         return productListRef;
+    }
+
+    public void setPhoto(Photo photo) {
+        this.photo = photo;
+    }
+
+    public Photo getPhoto() {
+        return photo;
     }
 }

@@ -1,7 +1,6 @@
 package angafe.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.InverseModelListRef;

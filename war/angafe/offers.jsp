@@ -19,7 +19,7 @@
 
 <div id="contentwrapper">
 	<div id="contentcolumn">
-		<div class="offerlist">
+		<div class="list">
 			<a href="BACK_LINK" class="${visibility}"><-- ${f:h(backText)}</a>
 			<h1>${f:h(title)}</h1>
 		<table>

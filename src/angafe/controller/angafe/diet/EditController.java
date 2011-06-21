@@ -1,4 +1,4 @@
-package angafe.controller.angafe.offer;
+package angafe.controller.angafe.diet;
 
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;

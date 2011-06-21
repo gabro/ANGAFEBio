@@ -116,24 +116,36 @@ margin-top: 0;
 	padding-left:20px;
 }
 
-.productlist table{
+.list table{
 	width: 80%;
 	margin: 20px 0px;
 	margin-right: auto;
 	margin-left: auto;
 }
 
-.productlist table,
-.productlist th,
-.productlist td{
+.list table,
+.list th,
+.list td{
 border: 1px solid black;
 }
 
-.productlist tr td img{
+.list tr td img{
 	width: 100px;
 	border-width: 1px;
 }
 
-.productlist .photo{
+.list .photo{
 	width: 100px;
+}
+
+.editor table{
+	margin: auto;
+}
+
+.editor th{
+	text-align: left;
+}
+
+.editor table td.first{
+	width: 200px;
 }

@@ -18,14 +18,15 @@
 		</div>
 
 		<div id="contentwrapper">
-			<div id="contentcolumn">
+			<div id="contentcolumn" class="editor">
+				<h1> EDITOR </h1>
 				<table>
 					<th>
 						PRODUCTS
 					</th>
 					<c:forEach var="p" items="${allProducts}">
 					<tr>
-						<td>
+						<td class="first">
 							${f:h(p.name)}
 						</td>
 						<td>
@@ -37,7 +38,7 @@
 					</tr>
 				</c:forEach>
 				<tr>
-					<td>
+					<td class="first">
 						<a href="/angafe/product/add">Add</a>
 					</td>
 				</tr>
@@ -49,7 +50,7 @@
 				</th>
 				<c:forEach var="p" items="${allProducers}">
 				<tr>
-					<td>
+					<td class="first">
 						${f:h(p.name)}
 					</td>
 					<td>
@@ -61,7 +62,7 @@
 				</tr>
 			</c:forEach>
 			<tr>
-				<td>
+				<td class="first">
 					<a href="/angafe/producer/add">Add</a>
 				</td>
 			</tr>
@@ -73,7 +74,7 @@
 			</th>
 			<c:forEach var="r" items="${allRecipes}">
 			<tr>
-				<td>
+				<td class="first">
 					${f:h(r.name)}
 				</td>
 				<td>
@@ -85,7 +86,7 @@
 			</tr>
 		</c:forEach>
 		<tr>
-			<td>
+			<td class="first">
 				<a href="/angafe/recipe/add">Add</a>
 			</td>
 		</tr>
@@ -97,7 +98,7 @@
 		</th>
 		<c:forEach var="o" items="${allOffers}">
 		<tr>
-			<td>
+			<td class="first">
 				${f:h(o.name)}
 			</td>
 			<td>
@@ -109,10 +110,82 @@
 		</tr>
 	</c:forEach>
 	<tr>
-		<td>
+		<td class="first">
 			<a href="/angafe/offer/add">Add</a>
 		</td>
 	</tr>
+</table>
+<br />
+<table>
+	<th>
+		DIETS
+	</th>
+	<c:forEach var="d" items="${allDiets}">
+	<tr>
+		<td class="first">
+			${f:h(d.name)}
+		</td>
+		<td>
+			<a href="/angafe/diet/edit?id=${f:h(d.key.id)}">Edit</a>
+		</td>
+		<td>
+			<a href="/angafe/diet/delete?id=${f:h(d.key.id)}">Delete</a>
+		</td>	
+	</tr>
+</c:forEach>
+<tr>
+	<td class="first">
+		<a href="/angafe/diet/add">Add</a>
+	</td>
+</tr>
+</table>
+<br />
+<table>
+	<th>
+		METHODS
+	</th>
+	<c:forEach var="m" items="${allMethods}">
+	<tr>
+		<td class="first">
+			${f:h(m.name)}
+		</td>
+		<td>
+			<a href="/angafe/method/edit?id=${f:h(m.key.id)}">Edit</a>
+		</td>
+		<td>
+			<a href="/angafe/method/delete?id=${f:h(m.key.id)}">Delete</a>
+		</td>	
+	</tr>
+</c:forEach>
+<tr>
+	<td class="first">
+		<a href="/angafe/method/add">Add</a>
+	</td>
+</tr>
+</table>
+<br />
+<table>
+	<th>
+		SPECIAL NEEDS
+	</th>
+	<c:forEach var="n" items="${allNeeds}">
+	<tr>
+		<td class="first">
+			${f:h(n.name)}
+		</td>
+		<td>
+			<a href="/angafe/need/edit?id=${f:h(n.key.id)}">Edit</a>
+		</td>
+		<td>
+			<a href="/angafe/need/delete?id=${f:h(n.key.id)}">Delete</a>
+		</td>	
+	</tr>
+</c:forEach>
+<tr>
+	<td class="first">
+		<a href="/angafe/need/add">Add</a>
+	</td>
+</tr>
 </table>
 </div>
 </div>

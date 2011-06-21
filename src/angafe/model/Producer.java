@@ -2,16 +2,15 @@ package angafe.model;
 
 import java.io.Serializable;
 
-import angafe.meta.ProductMeta;
-
-import com.google.appengine.api.datastore.Email;
-import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.Query.SortDirection;
-
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.InverseModelListRef;
 import org.slim3.datastore.Model;
 import org.slim3.datastore.Sort;
+
+import angafe.meta.ProductMeta;
+
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.Query.SortDirection;
 
 @Model(schemaVersion = 1)
 public class Producer implements Serializable {
