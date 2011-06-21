@@ -6,71 +6,119 @@
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>ANGAFE Index</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>ANGAFE Index</title>
 </head>
 <body>	
 
-<div id="maincontainer">
+	<div id="maincontainer">
 
-<div id="header">
-	<jsp:include page="/includes/header.jsp" flush="true" />
-</div>
+		<div id="header">
+			<jsp:include page="/includes/header.jsp" flush="true" />
+		</div>
 
-<div id="contentwrapper">
-	<div id="contentcolumn">
-		<table>
-			<th>
-				PRODUCTS
-			</th>
-			<c:forEach var="p" items="${allProducts}">
+		<div id="contentwrapper">
+			<div id="contentcolumn">
+				<table>
+					<th>
+						PRODUCTS
+					</th>
+					<c:forEach var="p" items="${allProducts}">
+					<tr>
+						<td>
+							${f:h(p.name)}
+						</td>
+						<td>
+							<a href="/angafe/product/edit?id=${f:h(p.key.id)}">Edit</a>
+						</td>
+						<td>
+							<a href="/angafe/product/delete?id=${f:h(p.key.id)}">Delete</a>
+						</td>	
+					</tr>
+				</c:forEach>
+				<tr>
+					<td>
+						<a href="/angafe/product/add">Add</a>
+					</td>
+				</tr>
+			</table>
+			<br />
+			<table>
+				<th>
+					PRODUCERS
+				</th>
+				<c:forEach var="p" items="${allProducers}">
+				<tr>
+					<td>
+						${f:h(p.name)}
+					</td>
+					<td>
+						<a href="/angafe/producer/edit?id=${f:h(p.key.id)}">Edit</a>
+					</td>
+					<td>
+						<a href="/angafe/producer/delete?id=${f:h(p.key.id)}">Delete</a>
+					</td>	
+				</tr>
+			</c:forEach>
 			<tr>
 				<td>
-					${f:h(p.name)}
+					<a href="/angafe/producer/add">Add</a>
+				</td>
+			</tr>
+		</table>
+		<br />
+		<table>
+			<th>
+				RECIPES
+			</th>
+			<c:forEach var="r" items="${allRecipes}">
+			<tr>
+				<td>
+					${f:h(r.name)}
 				</td>
 				<td>
-					<a href="/angafe/product/edit?id=${f:h(p.key.id)}">Edit</a>
+					<a href="/angafe/recipe/edit?id=${f:h(r.key.id)}">Edit</a>
 				</td>
 				<td>
-					<a href="/angafe/product/delete?id=${f:h(p.key.id)}">Delete</a>
+					<a href="/angafe/recipe/delete?id=${f:h(r.key.id)}">Delete</a>
 				</td>	
 			</tr>
 		</c:forEach>
 		<tr>
 			<td>
-				<a href="/angafe/product/add">Add</a>
+				<a href="/angafe/recipe/add">Add</a>
 			</td>
 		</tr>
 	</table>
 	<br />
 	<table>
 		<th>
-			PRODUCERS
+			OFFERS
 		</th>
-		<c:forEach var="p" items="${allProducers}">
+		<c:forEach var="o" items="${allOffers}">
 		<tr>
 			<td>
-				${f:h(p.name)}
+				${f:h(o.name)}
 			</td>
 			<td>
-				<a href="/angafe/producer/edit?id=${f:h(p.key.id)}">Edit</a>
+				<a href="/angafe/offer/edit?id=${f:h(o.key.id)}">Edit</a>
 			</td>
 			<td>
-				<a href="/angafe/producer/delete?id=${f:h(p.key.id)}">Delete</a>
+				<a href="/angafe/offer/delete?id=${f:h(o.key.id)}">Delete</a>
 			</td>	
 		</tr>
 	</c:forEach>
 	<tr>
 		<td>
-			<a href="/angafe/producer/add">Add</a>
+			<a href="/angafe/offer/add">Add</a>
 		</td>
 	</tr>
 </table>
-	</div>
+</div>
 </div>
 
 <div id="rightcolumn">
-		<jsp:include page="/includes/sidemenu.jsp" flush="true" />
+	<jsp:include page="/includes/sidemenu.jsp" flush="true" />
 </div>
 
 <div id="footer">Realizzazione a cura di <b>Andrea Villa</b>, <b>Federico Pellegatta</b> e <b>Gabriele Petronella</b></a></div>

@@ -7,22 +7,21 @@ import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
 import org.slim3.datastore.Datastore;
 
-import angafe.model.Producer;
 import angafe.model.Product;
-import angafe.service.ProducerService;
+import angafe.model.Recipe;
 import angafe.service.ProductService;
+import angafe.service.RecipeService;
 
 import com.google.appengine.api.datastore.Key;
 
-public class ProductsController extends Controller {
+public class RecipesController extends Controller {
 
-    
+    RecipeService recipeService = new RecipeService();
     ProductService productService = new ProductService();
-    ProducerService producerService = new ProducerService();
     
     @Override
     public Navigation run() throws Exception {
-        List<Product> products = new ArrayList<Product>();
+        List<Recipe> recipes = new ArrayList<Recipe>();
         String filter = request.getParameter("filter");
         String title = "";
         String visibility = "hidden";
@@ -30,26 +29,26 @@ public class ProductsController extends Controller {
         
         //Mostra tutti i prodotti
         if(null == filter) {
-            products = productService.getProducts();
-            title = "All products";
+            recipes = recipeService.getRecipes();
+            title = "All recipes";
         } else {
 
             //Mostra i prodotti di un determinato produttore
-            if(filter.equals("producer")) {
+            if(filter.equals("product")) {
                 long id = Long.decode((String)request.getAttribute("id"));
-                Key key = Datastore.createKey(Producer.class, id);
-                Producer producer = producerService.getProducer(key);
-                products = productService.getProducts(producer);
-                title = "Products by "+producer.getName();
-                requestScope("producer",producer);
+                Key key = Datastore.createKey(Product.class, id);
+                Product product = productService.getProduct(key);
+                recipes = recipeService.getRecipes(product);
+                title = "Recipes featuring "+product.getName();
+                requestScope("product",product);
                 visibility = "visibile";
-                backText = "Torna al produttore";
+                backText = "Torna al prodotto";
             }
         }
-        requestScope("products",products);
+        requestScope("recipes",recipes);
         requestScope("title",title);
         requestScope("visibility",visibility);
         requestScope("backText",backText);
-        return forward("products.jsp");
+        return forward("recipes.jsp");
     }
 }

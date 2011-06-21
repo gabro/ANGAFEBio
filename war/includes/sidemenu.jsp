@@ -8,9 +8,10 @@
 <ul>
 	<li><a href=/angafe/products>Products</a></li>
 	<li><a href=/angafe/producers>Producers</a></li>
-	<li><a href=#>Production Methods</a></li>
-	<li><a href=#>Recipes</a></li>
-	<li><a href=#>Diets</a></li>	
-	<li><a href=#>Special Needs</a></li>	
+	<li><a href=/angafe/methods>Production Methods</a></li>
+	<li><a href=/angafe/recipes>Recipes</a></li>
+	<li><a href=/angafe/diets>Diets</a></li>	
+	<li><a href=/angafe/needs>Special Needs</a></li>
+	<li><a href=/angafe/offers>Special Offers</a></li>	
 </ul>
 </div>

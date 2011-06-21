@@ -1,13 +1,12 @@
 package angafe.model;
 
 import java.io.Serializable;
-import java.util.Date;
-
-import com.google.appengine.api.datastore.Key;
 
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.InverseModelListRef;
 import org.slim3.datastore.Model;
+
+import com.google.appengine.api.datastore.Key;
 
 @Model(schemaVersion = 1)
 public class SpecialOffer implements Serializable {
@@ -20,9 +19,10 @@ public class SpecialOffer implements Serializable {
     @Attribute(version = true)
     private Long version;
 
+    private String name;
     private String info;
-    private Date dataInizio;
-    private Date dataFine;
+    private String dataInizio;
+    private String dataFine;
     
     //Ogni offerta contiene N prodotti
     @Attribute(persistent = false)
@@ -109,20 +109,28 @@ public class SpecialOffer implements Serializable {
         return productSpecialOfferListRef;
     }
 
-    public void setDataInizio(Date dataInizio) {
+    public void setDataInizio(String dataInizio) {
         this.dataInizio = dataInizio;
     }
 
-    public Date getDataInizio() {
+    public String getDataInizio() {
         return dataInizio;
     }
 
-    public void setDataFine(Date dataFine) {
+    public void setDataFine(String dataFine) {
         this.dataFine = dataFine;
     }
 
-    public Date getDataFine() {
+    public String getDataFine() {
         return dataFine;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
 }
