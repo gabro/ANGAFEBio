@@ -27,8 +27,13 @@
 			<p>${f:h(method.description)}</p>
 			<br />
 			<p>
-				<a href="/angafe/products?filter=method&id=${f:h(method.key.id)}"><h2>Prodotti</h2></a>
-			</p>	
+				<a href="/angafe/products?filter=method&id=${f:h(method.key.id)}"><h2>Products</h2></a>
+			</p>
+				<p>
+					<a href="/angafe/producers?filter=method&id=${f:h(method.key.id)}"><h2>Producers</h2></a>
+				</p>	
+			<a href="${groupLinkBack}" class="${groupLinkBackVisibility}"><-- ${groupLinkBackTitle}</a>
+			<a href="${groupLinkForward}" class="${groupLinkForwardVisibility}">${groupLinkForwardTitle} --></a>
 		</div>
 	</div>
 </div>

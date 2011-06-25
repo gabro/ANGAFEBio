@@ -1,5 +1,6 @@
 package angafe.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,8 @@ import org.slim3.util.RequestMap;
 
 import angafe.meta.ProducerMeta;
 import angafe.model.Producer;
+import angafe.model.Product;
+import angafe.model.ProductionMethod;
 
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.Transaction;
@@ -56,6 +59,19 @@ public class ProducerService {
         Transaction tx = Datastore.beginTransaction();
         Datastore.put(producer);
         tx.commit();        
+    }
+
+    public List<Producer> getProducers(ProductionMethod method) {
+        ProductService productService = new ProductService();
+        List<Product> products = productService.getProducts(method);
+        List<Producer> producers = new ArrayList<Producer>();
+        for(Product product: products) {
+            Producer producer = product.getProducerRef().getModel();
+            if(!producers.contains(producer)) {
+                producers.add(producer);
+            }
+        }
+        return producers;
     }
     
 }

@@ -26,14 +26,15 @@ public class RecipesController extends Controller {
         String title = "";
         String visibility = "hidden";
         String backText = "Indietro";
-        
+        String tourFilter = "";
+
         //Mostra tutti i prodotti
         if(null == filter) {
             recipes = recipeService.getRecipes();
             title = "All recipes";
         } else {
 
-            //Mostra i prodotti di un determinato produttore
+            //Mostra i prodotti di un determinato prodotto
             if(filter.equals("product")) {
                 long id = Long.decode((String)request.getAttribute("id"));
                 Key key = Datastore.createKey(Product.class, id);
@@ -42,13 +43,17 @@ public class RecipesController extends Controller {
                 title = "Recipes featuring "+product.getName();
                 requestScope("product",product);
                 visibility = "visibile";
-                backText = "Torna al prodotto";
+                backText = "torna a "+product.getName();
+                tourFilter = "&tour=product&productId="+id;
             }
         }
+        
+        requestScope("tourFilter",tourFilter);
         requestScope("recipes",recipes);
         requestScope("title",title);
         requestScope("visibility",visibility);
         requestScope("backText",backText);
+        
         return forward("recipes.jsp");
     }
 }

@@ -65,7 +65,7 @@ public class RecipeController extends Controller {
                     //Se il prodotto corrente NON è il primo della lista
                     Recipe prevRecipe = productRecipes.get(productRecipes.indexOf(recipe) - 1);
                     groupLinkBack = "/angafe/recipe?id="+prevRecipe.getKey().getId()+"&tour=product&productId="+productId;
-                    groupLinkBackTitle = "Previous product";
+                    groupLinkBackTitle = "Previous recipe";
                     groupLinkBackVisibility = "visible";
                 }
 
@@ -73,7 +73,7 @@ public class RecipeController extends Controller {
                     //Se il prodotto corrente NON è l'ultimo della lista
                     Recipe nextRecipe = productRecipes.get(productRecipes.indexOf(recipe) + 1);
                     groupLinkForward = "/angafe/recipe?id="+nextRecipe.getKey().getId()+"&tour=product&productId="+productId;
-                    groupLinkForwardTitle = "Next product";
+                    groupLinkForwardTitle = "Next recipe";
                     groupLinkForwardVisibility = "visible";
                 }
             }

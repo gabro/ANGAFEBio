@@ -31,7 +31,7 @@
 								<img src="/angafe/image?imgId=${f:h(p.photo.key.id)}" />
 							</td>
 							<td>
-								<a href="/angafe/producer?id=${f:h(p.key.id)}&index=true">${f:h(p.name)}</a>
+								<a href="/angafe/producer?id=${f:h(p.key.id)}&index=true${tourFilter}">${f:h(p.name)}</a>
 							</td>
 						</tr>
 					</c:forEach>

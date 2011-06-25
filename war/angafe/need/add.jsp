@@ -19,6 +19,12 @@
 
 		<div id="contentwrapper">
 			<div id="contentcolumn">
+					<c:choose>
+					<c:when test="${fn:length(allProducts) == 0}">
+					<p>No products found. You have to add at least one product first!</p>
+					<a href="/angafe/editor"><-- Back</a>
+					</c:when>
+					<c:otherwise>
 				<table>
 					<form method="post" action="load?action=add">
 						<tr>
@@ -39,7 +45,9 @@
 							<td><input type="submit" value="Invia"></td>
 						</tr>
 					</form>
-				</table>	
+				</table>
+				</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 

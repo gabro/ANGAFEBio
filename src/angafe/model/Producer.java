@@ -39,6 +39,7 @@ public class Producer implements Serializable {
         new InverseModelListRef<Product, Producer>(Product.class, "producerRef", this,
                 //prodotti ordinati per nome in ordine ascendente
                 new Sort(ProductMeta.get().name.getName(), SortDirection.ASCENDING));
+    
 
     /**
      * Returns the key.

@@ -36,6 +36,7 @@ public class ProductionMethod implements Serializable {
                 //prodotti ordinati per nome in ordine ascendente
                 new Sort(ProductMeta.get().name.getName(), SortDirection.ASCENDING));
     
+    
     /**
      * Returns the key.
      *

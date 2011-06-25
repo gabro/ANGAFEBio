@@ -4,20 +4,20 @@ import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
 import org.slim3.datastore.Datastore;
 
-import angafe.model.Product;
-import angafe.service.ProductService;
+import angafe.model.ProductionMethod;
+import angafe.service.ProductionMethodService;
 
 import com.google.appengine.api.datastore.Key;
 
 public class DeleteController extends Controller {
 
-    ProductService service = new ProductService();
+    ProductionMethodService service = new ProductionMethodService();
     
     @Override
     public Navigation run() throws Exception {
         long id = Long.decode((String)request.getAttribute("id"));
-        Key prodKey = Datastore.createKey(Product.class, id);
-        service.deleteProduct(prodKey);
+        Key methKey = Datastore.createKey(ProductionMethod.class, id);
+        service.deleteMethod(methKey);
         return redirect("/angafe/editor");
     }
 }

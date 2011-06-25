@@ -27,7 +27,14 @@
 			<p>${f:h(producer.description)}</p>
 			<br />
 			<p>
-				<a href="/angafe/products?filter=producer&id=${f:h(producer.key.id)}"><h2>Prodotti</h2></a>
+			<a href="/angafe/products?filter=producer&id=${f:h(producer.key.id)}"><h2>Prodotti</h2></a>
+			</p>
+			<p>METODI DI PRODUZIONE ADOTTATI
+				<ul>
+				<c:forEach var="m" items="${methods}">
+					<li><a href="/angafe/method?id=${m.key.id}&tour=producer&producerId=${f:h(producer.key.id)}">${m.name}</a></li>
+				</c:forEach>
+				</ul>
 			</p>
 			<h2>Contatti</h2>
 			<p>
@@ -35,6 +42,8 @@
 				tel: ${f:h(producer.phone)}<br />
 				fax: ${f:h(producer.fax)}
 			</p>
+			<a href="${groupLinkBack}" class="${groupLinkBackVisibility}"><-- ${groupLinkBackTitle}</a>
+			<a href="${groupLinkForward}" class="${groupLinkForwardVisibility}">${groupLinkForwardTitle} --></a>
 		</div>
 	</div>
 </div>

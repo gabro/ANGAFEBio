@@ -118,30 +118,6 @@
 <br />
 <table>
 	<th>
-		DIETS
-	</th>
-	<c:forEach var="d" items="${allDiets}">
-	<tr>
-		<td class="first">
-			${f:h(d.name)}
-		</td>
-		<td>
-			<a href="/angafe/diet/edit?id=${f:h(d.key.id)}">Edit</a>
-		</td>
-		<td>
-			<a href="/angafe/diet/delete?id=${f:h(d.key.id)}">Delete</a>
-		</td>	
-	</tr>
-</c:forEach>
-<tr>
-	<td class="first">
-		<a href="/angafe/diet/add">Add</a>
-	</td>
-</tr>
-</table>
-<br />
-<table>
-	<th>
 		METHODS
 	</th>
 	<c:forEach var="m" items="${allMethods}">
