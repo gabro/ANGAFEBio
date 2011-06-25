@@ -31,8 +31,11 @@
 					</c:forEach>
 					</ul>
 				</p>
-				<p>DESCRIZIONE DEL PRODOTTO</p>
-				<p>${f:h(product.description)}</p>
+				<p>ISTRUZIONI</p>
+				<p>${f:h(recipe.directions)}</p>
+				<a href="${groupLinkBack}" class="${groupLinkBackVisibility}"><-- ${groupLinkBackTitle}</a>
+				<a href="${groupLinkForward}" class="${groupLinkForwardVisibility}">${groupLinkForwardTitle} --></a>
+				
 		</div>
 	</div>
 </div>

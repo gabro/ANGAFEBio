@@ -50,7 +50,7 @@ public class RecipeController extends Controller {
         
         String tour = request.getParameter("tour");
         if(tour != null) {
-            if(tour.equals("recipe")) {
+            if(tour.equals("product")) {
                 ProductService productService = new ProductService();
                 long productId = Long.parseLong((String)request.getParameter("productId"));
                 Key productKety = Datastore.createKey(Product.class, productId);
@@ -59,17 +59,17 @@ public class RecipeController extends Controller {
                 backLinkTitle = "back to "+product.getName();
                 backLink = "/angafe/product?id="+productId;
                 backLinkVisibility = "visibile";
+                System.out.println(productRecipes);
                 
-                if (productRecipes.indexOf(product) != 0) {
+                if (productRecipes.indexOf(recipe) != 0) {
                     //Se il prodotto corrente NON è il primo della lista
                     Recipe prevRecipe = productRecipes.get(productRecipes.indexOf(recipe) - 1);
                     groupLinkBack = "/angafe/recipe?id="+prevRecipe.getKey().getId()+"&tour=product&productId="+productId;
                     groupLinkBackTitle = "Previous product";
                     groupLinkBackVisibility = "visible";
-
                 }
 
-                if (productRecipes.indexOf(product) != productRecipes.size() - 1 ) {
+                if (productRecipes.indexOf(recipe) != productRecipes.size() - 1 ) {
                     //Se il prodotto corrente NON è l'ultimo della lista
                     Recipe nextRecipe = productRecipes.get(productRecipes.indexOf(recipe) + 1);
                     groupLinkForward = "/angafe/recipe?id="+nextRecipe.getKey().getId()+"&tour=product&productId="+productId;
