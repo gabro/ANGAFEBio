@@ -34,6 +34,15 @@
 					</ul>
 				</p>
 			</c:if>
+			<c:if test='${fn:length(recipes) > 0}'>
+				<p>Featured in these recipes:
+						<ul>
+						<c:forEach var="r" items="${recipes}">
+							<li><a href="/angafe/recipe?id=${f:h(r.key.id)}&tour=product&productId=${f:h(product.key.id)}">${f:h(r.name)}</a></li>
+						</c:forEach>
+						</ul>
+				</p>
+			</c:if>
 			<p>DESCRIZIONE DEL PRODOTTO</p>
 			<p>${f:h(product.description)}</p>
 			

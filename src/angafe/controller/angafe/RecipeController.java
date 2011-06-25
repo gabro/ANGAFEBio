@@ -32,6 +32,13 @@ public class RecipeController extends Controller {
             backLinkVisibility = "visibile";
         }
 
+        String groupLinkBackTitle = "";
+        String groupLinkBack = "#";
+        String groupLinkBackVisibility = "hidden";
+        String groupLinkForwardTitle = "";
+        String groupLinkForward = "#";
+        String groupLinkForwardVisibility = "hidden";
+        
         //Recupero l'id dalla request e lo trasformo in long
         long id = Long.parseLong((String)request.getAttribute("id"));
         //Creo una chiave con quell'id
@@ -40,6 +47,38 @@ public class RecipeController extends Controller {
         //Ottengo la ricetta dal datastore tramite la chiave
         Recipe recipe = recipeService.getRecipe(recKey);
         List<Product> products = productService.getProducts(recipe);
+        
+        String tour = request.getParameter("tour");
+        if(tour != null) {
+            if(tour.equals("recipe")) {
+                ProductService productService = new ProductService();
+                long productId = Long.parseLong((String)request.getParameter("productId"));
+                Key productKety = Datastore.createKey(Product.class, productId);
+                Product product = productService.getProduct(productKety);
+                List<Recipe> productRecipes = recipeService.getRecipes(product);
+                backLinkTitle = "back to "+product.getName();
+                backLink = "/angafe/product?id="+productId;
+                backLinkVisibility = "visibile";
+                
+                if (productRecipes.indexOf(product) != 0) {
+                    //Se il prodotto corrente NON è il primo della lista
+                    Recipe prevRecipe = productRecipes.get(productRecipes.indexOf(recipe) - 1);
+                    groupLinkBack = "/angafe/recipe?id="+prevRecipe.getKey().getId()+"&tour=product&productId="+productId;
+                    groupLinkBackTitle = "Previous product";
+                    groupLinkBackVisibility = "visible";
+
+                }
+
+                if (productRecipes.indexOf(product) != productRecipes.size() - 1 ) {
+                    //Se il prodotto corrente NON è l'ultimo della lista
+                    Recipe nextRecipe = productRecipes.get(productRecipes.indexOf(recipe) + 1);
+                    groupLinkForward = "/angafe/recipe?id="+nextRecipe.getKey().getId()+"&tour=product&productId="+productId;
+                    groupLinkForwardTitle = "Next product";
+                    groupLinkForwardVisibility = "visible";
+                }
+            }
+        }
+        
         //Rendo accessibile la variabile
         requestScope("recipe",recipe);
         requestScope("products",products);
@@ -48,6 +87,12 @@ public class RecipeController extends Controller {
         requestScope("backLinkTitle", backLinkTitle);
         requestScope("backLinkVisibility", backLinkVisibility);
 
+        requestScope("groupLinkBackVisibility", groupLinkBackVisibility);
+        requestScope("groupLinkForwardVisibility", groupLinkForwardVisibility);
+        requestScope("groupLinkBack",groupLinkBack);
+        requestScope("groupLinkBackTitle",groupLinkBackTitle);
+        requestScope("groupLinkForward",groupLinkForward);
+        requestScope("groupLinkForwardTitle",groupLinkForwardTitle);
         
         //Mostro il jsp
         return forward("recipe.jsp");

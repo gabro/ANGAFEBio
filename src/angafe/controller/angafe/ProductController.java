@@ -25,6 +25,7 @@ public class ProductController extends Controller {
     SpecialNeedService needService = new SpecialNeedService();
     ProductService productService = new ProductService();
     ProducerService producerService = new ProducerService();
+    RecipeService recipeService = new RecipeService();
 
     @Override
     public Navigation run() throws Exception {
@@ -57,7 +58,8 @@ public class ProductController extends Controller {
         //Rendo accessibile la variabile
 
         List<SpecialNeed> needs = needService.getSpecialNeeds(product);
-
+        List<Recipe> recipes = recipeService.getRecipes(product);
+        
         String tour = request.getParameter("tour");
         if(tour != null) {
             if(tour.equals("producer")) {                
@@ -210,6 +212,8 @@ public class ProductController extends Controller {
         
         requestScope("needs",needs);
         requestScope("product",product);
+        requestScope("recipes",recipes);
+
         //Mostro il jsp
         return forward("product.jsp");
     }
