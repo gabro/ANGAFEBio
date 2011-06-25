@@ -16,9 +16,16 @@ public class ProducerController extends Controller {
     @Override
     public Navigation run() throws Exception {
         
-        String backLinkTitle = "back to all producers";
-        String backLink = "/angafe/producers";
-        String backLinkVisibility = "visibile";
+        String backLinkTitle = "";
+        String backLink = "";
+        String backLinkVisibility = "hidden";
+        
+        String index = request.getParameter("index");
+        if(index != null && index.equals("true")) {
+            backLinkTitle = "back to all producers";
+            backLink = "/angafe/producers";
+            backLinkVisibility = "visibile";
+        }
         
         //Recupero l'id dalla request e lo trasformo in long
         long id = Long.parseLong((String)request.getAttribute("id"));

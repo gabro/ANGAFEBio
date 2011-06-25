@@ -8,6 +8,7 @@ import org.slim3.datastore.Datastore;
 
 import angafe.model.Producer;
 import angafe.model.Product;
+import angafe.model.ProductionMethod;
 import angafe.model.Recipe;
 import angafe.model.SpecialNeed;
 import angafe.model.SpecialOffer;
@@ -28,9 +29,16 @@ public class ProductController extends Controller {
     @Override
     public Navigation run() throws Exception {
 
-        String backLinkTitle = "back to all products";
-        String backLink = "/angafe/products";
-        String backLinkVisibility = "visibile";
+        String backLinkTitle = "";
+        String backLink = "";
+        String backLinkVisibility = "hidden";
+        
+        String index = request.getParameter("index");
+        if(index != null && index.equals("true")) {
+            backLinkTitle = "back to all products";
+            backLink = "/angafe/products";
+            backLinkVisibility = "visibile";
+        }
         
         String groupLinkBackTitle = "";
         String groupLinkBack = "#";
@@ -58,6 +66,7 @@ public class ProductController extends Controller {
 
                 backLinkTitle = "back to products by "+producer.getName();
                 backLink = "/angafe/products?filter=producer&id="+producer.getKey().getId();
+                backLinkVisibility = "visibile";
                 
                 if (producerProducts.indexOf(product) != 0) {
                     //Se il prodotto corrente NON è il primo della lista
@@ -85,6 +94,7 @@ public class ProductController extends Controller {
                 List<Product> recipeProducts = productService.getProducts(recipe);
                 backLinkTitle = "back to "+recipe.getName();
                 backLink = "/angafe/recipe?id="+recipeId;
+                backLinkVisibility = "visibile";
                 
                 if (recipeProducts.indexOf(product) != 0) {
                     //Se il prodotto corrente NON è il primo della lista
@@ -112,6 +122,7 @@ public class ProductController extends Controller {
                 List<Product> offerProducts = productService.getProducts(offer);
                 backLinkTitle = "back to "+offer.getName();
                 backLink = "/angafe/offer?id="+offerId;
+                backLinkVisibility = "visibile";
                 
                 if (offerProducts.indexOf(product) != 0) {
                     //Se il prodotto corrente NON è il primo della lista
@@ -126,6 +137,60 @@ public class ProductController extends Controller {
                     //Se il prodotto corrente NON è l'ultimo della lista
                     Product nextProduct = offerProducts.get(offerProducts.indexOf(product) + 1);
                     groupLinkForward = "/angafe/product?id="+nextProduct.getKey().getId()+"&tour=offer&offerId="+offerId;
+                    groupLinkForwardTitle = "Next product";
+                    groupLinkForwardVisibility = "visible";
+                }
+            }
+            
+            if(tour.equals("need")) {
+                SpecialNeedService needService = new SpecialNeedService();
+                long needId = Long.parseLong((String)request.getParameter("needId"));
+                Key needKey = Datastore.createKey(SpecialNeed.class, needId);
+                SpecialNeed need = needService.getSpecialNeed(needKey);
+                List<Product> needProducts = productService.getProducts(need);
+                backLinkTitle = "back to products for "+need.getName();
+                backLink = "/angafe/products?filter=need&id="+needId;
+                backLinkVisibility = "visibile";
+                
+                if (needProducts.indexOf(product) != 0) {
+                    //Se il prodotto corrente NON è il primo della lista
+                    Product prevProduct = needProducts.get(needProducts.indexOf(product) - 1);
+                    groupLinkBack = "/angafe/product?id="+prevProduct.getKey().getId()+"&tour=need&needId="+needId;
+                    groupLinkBackTitle = "Previous product";
+                    groupLinkBackVisibility = "visible";
+
+                }
+
+                if (needProducts.indexOf(product) != needProducts.size() - 1 ) {
+                    //Se il prodotto corrente NON è l'ultimo della lista
+                    Product nextProduct = needProducts.get(needProducts.indexOf(product) + 1);
+                    groupLinkForward = "/angafe/product?id="+nextProduct.getKey().getId()+"&tour=need&needId="+needId;
+                    groupLinkForwardTitle = "Next product";
+                    groupLinkForwardVisibility = "visible";
+                }
+            }
+            
+            if(tour.equals("method")) {                
+                ProductionMethod method = product.getProductionMethodRef().getModel();
+                List<Product> methodProducts = productService.getProducts(method);
+
+                backLinkTitle = "back to products made with "+method.getName();
+                backLink = "/angafe/products?filter=method&id="+method.getKey().getId();
+                backLinkVisibility = "visibile";
+                
+                if (methodProducts.indexOf(product) != 0) {
+                    //Se il prodotto corrente NON è il primo della lista
+                    Product prevProduct = methodProducts.get(methodProducts.indexOf(product) - 1);
+                    groupLinkBack = "/angafe/product?id="+prevProduct.getKey().getId()+"&tour=method";
+                    groupLinkBackTitle = "Previous product";
+                    groupLinkBackVisibility = "visible";
+
+                }
+
+                if (methodProducts.indexOf(product) != methodProducts.size() - 1 ) {
+                    //Se il prodotto corrente NON è l'ultimo della lista
+                    Product nextProduct = methodProducts.get(methodProducts.indexOf(product) + 1);
+                    groupLinkForward = "/angafe/product?id="+nextProduct.getKey().getId()+"&tour=method";
                     groupLinkForwardTitle = "Next product";
                     groupLinkForwardVisibility = "visible";
                 }

@@ -6,7 +6,6 @@ import org.slim3.datastore.Datastore;
 import org.slim3.util.BeanUtil;
 import org.slim3.util.RequestMap;
 
-import angafe.meta.ProductProductionMethodMeta;
 import angafe.meta.ProductionMethodMeta;
 import angafe.model.ProductionMethod;
 

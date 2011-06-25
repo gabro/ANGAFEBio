@@ -6,44 +6,44 @@
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>ANGAFE Index</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>ANGAFE Index</title>
 </head>
 <body>	
 
-<div id="maincontainer">
+	<div id="maincontainer">
 
-<div id="header">
-	<jsp:include page="/includes/header.jsp" flush="true" />
-</div>
+		<div id="header">
+			<jsp:include page="/includes/header.jsp" flush="true" />
+		</div>
 
-<div id="contentwrapper">
-	<div id="contentcolumn">
-		<div class="list">
-			<a href="/angafe/producer?id=${producer.key.id}" class="${visibility}"><-- ${f:h(backText)}</a>
-			<h1>${f:h(title)}</h1>
-				<c:choose>
-				<c:when test="${fn:length(producers) > 0}">
-		<table>
-			<c:forEach var="p" items="${producers}">
-			<tr>
-				<td class="photo">
-					<img src="/angafe/image?imgId=${f:h(p.photo.key.id)}" />
-				</td>
-				<td>
-					<a href="/angafe/producer?id=${f:h(p.key.id)}">${f:h(p.name)}</a>
-				</td>
-			</tr>
-			</c:forEach>
-			
-		</table>
-		</c:when>
-		<c:otherwise>
+		<div id="contentwrapper">
+			<div id="contentcolumn">
+				<div class="list">
+					<a href="/angafe/producer?id=${producer.key.id}" class="${visibility}"><-- ${f:h(backText)}</a>
+					<h1>${f:h(title)}</h1>
+					<c:choose>
+					<c:when test="${fn:length(producers) > 0}">
+					<table>
+						<c:forEach var="p" items="${producers}">
+						<tr>
+							<td class="photo">
+								<img src="/angafe/image?imgId=${f:h(p.photo.key.id)}" />
+							</td>
+							<td>
+								<a href="/angafe/producer?id=${f:h(p.key.id)}&index=true">${f:h(p.name)}</a>
+							</td>
+						</tr>
+					</c:forEach>
+
+				</table>
+			</c:when>
+			<c:otherwise>
 			<p>Sorry. No producers available!</p>
 		</c:otherwise>
-		</c:choose>
-		</div>
-	</div>
+	</c:choose>
+</div>
+</div>
 </div>
 
 <div id="rightcolumn">

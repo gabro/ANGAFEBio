@@ -21,9 +21,16 @@ public class RecipeController extends Controller {
     @Override
     public Navigation run() throws Exception {
         
-        String backLinkTitle = "back to all recipes";
-        String backLink = "/angafe/recipes";
-        String backLinkVisibility = "visibile";
+        String backLinkTitle = "";
+        String backLink = "";
+        String backLinkVisibility = "hidden";
+        
+        String index = request.getParameter("index");
+        if(index != null && index.equals("true")) {
+            backLinkTitle = "back to all recipes";
+            backLink = "/angafe/recipes";
+            backLinkVisibility = "visibile";
+        }
 
         //Recupero l'id dalla request e lo trasformo in long
         long id = Long.parseLong((String)request.getAttribute("id"));

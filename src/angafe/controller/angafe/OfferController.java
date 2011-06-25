@@ -21,10 +21,16 @@ public class OfferController extends Controller {
     @Override
     public Navigation run() throws Exception {
         
-        String backLinkTitle = "back to all offers";
-        String backLink = "/angafe/offers";
-        String backLinkVisibility = "visibile";
-
+        String backLinkTitle = "";
+        String backLink = "";
+        String backLinkVisibility = "hidden";
+        
+        String index = request.getParameter("index");
+        if(index != null && index.equals("true")) {
+            backLinkTitle = "back to all special offers";
+            backLink = "/angafe/offers";
+            backLinkVisibility = "visibile";
+        }
         //Recupero l'id dalla request e lo trasformo in long
         long id = Long.parseLong((String)request.getAttribute("id"));
         //Creo una chiave con quell'id

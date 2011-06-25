@@ -10,7 +10,6 @@ import org.slim3.datastore.Datastore;
 import angafe.model.Producer;
 import angafe.model.Product;
 import angafe.model.ProductionMethod;
-import angafe.model.Recipe;
 import angafe.model.SpecialNeed;
 import angafe.service.ProducerService;
 import angafe.service.ProductService;
@@ -68,6 +67,7 @@ public class ProductsController extends Controller {
                 visibility = "visibile";
                 backText = "Back to the production method";
                 backLink = "/angafe/method?id="+method.getKey().getId();
+                tourFilter = "&tour=method";
             }
             
             if(filter.equals("need")) {
@@ -79,6 +79,7 @@ public class ProductsController extends Controller {
                 visibility = "visible";
                 backText = "Back to special needs";
                 backLink = "/angafe/needs";
+                tourFilter = "&tour=need&needId="+id;
             }
         }
         

@@ -29,7 +29,7 @@
 					<img src="/angafe/image?imgId=${f:h(m.photo.key.id)}" />
 				</td>
 				<td>
-					<a href="/angafe/method?id=${f:h(m.key.id)}">${f:h(m.name)}</a>
+					<a href="/angafe/method?id=${f:h(m.key.id)}&index=true">${f:h(m.name)}</a>
 				</td>
 			</tr>
 			</c:forEach>

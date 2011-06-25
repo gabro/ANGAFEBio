@@ -6,33 +6,40 @@
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>ANGAFE Index</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>ANGAFE Index</title>
 </head>
 <body>	
 
-<div id="maincontainer">
+	<div id="maincontainer">
 
-<div id="header">
-	<jsp:include page="/includes/header.jsp" flush="true" />
-</div>
-
-<div id="contentwrapper">
-	<div id="contentcolumn">
-		<div class="list">
-			<a href="BACK_LINK" class="${visibility}"><-- ${f:h(backText)}</a>
-			<h1>${f:h(title)}</h1>
-		<table>
-			<c:forEach var="o" items="${offers}">
-			<tr>
-				<td>
-					<a href="/angafe/offer?id=${f:h(o.key.id)}">${f:h(o.name)}</a>
-				</td>
-			</tr>
-			</c:forEach>
-		</table>
+		<div id="header">
+			<jsp:include page="/includes/header.jsp" flush="true" />
 		</div>
-	</div>
+
+		<div id="contentwrapper">
+			<div id="contentcolumn">
+				<div class="list">
+					<a href="BACK_LINK" class="${visibility}"><-- ${f:h(backText)}</a>
+					<h1>${f:h(title)}</h1>
+					<c:choose>
+					<c:when test="${fn:length(offers) > 0}">
+					<table>
+						<c:forEach var="o" items="${offers}">
+						<tr>
+							<td>
+								<a href="/angafe/offer?id=${f:h(o.key.id)}&index=true">${f:h(o.name)}</a>
+							</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</c:when>
+			<c:otherwise>
+			<p>Sorry. No offers available!</p>
+		</c:otherwise>
+	</c:choose>
+</div>
+</div>
 </div>
 
 <div id="rightcolumn">
