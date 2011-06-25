@@ -20,20 +20,27 @@
 <div id="contentwrapper">
 	<div id="contentcolumn">
 		<div class="list">
-			<a href="/angafe/producer?id=${producer.key.id}" class="${visibility}"><-- ${f:h(backText)}</a>
+			<a href="${backLink}" class="${visibility}"><-- ${f:h(backText)}</a>
 			<h1>${f:h(title)}</h1>
-		<table>
-			<c:forEach var="p" items="${products}">
-			<tr>
-				<td class="photo">
-					<img src="/angafe/image?imgId=${f:h(p.photo.key.id)}" />
-				</td>
-				<td>
-					<a href="/angafe/product?id=${f:h(p.key.id)}">${f:h(p.name)}</a>
-				</td>
-			</tr>
-			</c:forEach>
-		</table>
+			<c:choose>
+			<c:when test="${fn:length(products) > 0}">
+				<table>
+					<c:forEach var="p" items="${products}">
+					<tr>
+						<td class="photo">
+							<img src="/angafe/image?imgId=${f:h(p.photo.key.id)}" />
+						</td>
+						<td>
+							<a href="/angafe/product?id=${f:h(p.key.id)}${tourFilter}">${f:h(p.name)}</a>
+						</td>
+					</tr>
+					</c:forEach>
+				</table>
+			</c:when>
+			<c:otherwise>
+				<p>Sorry. No products available!</p>
+			</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 </div>

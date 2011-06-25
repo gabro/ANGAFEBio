@@ -1,16 +1,4 @@
-<!-- Indices written at Tue, 21 Jun 2011 21:52:44 UTC -->
+<!-- Indices written at Sat, 25 Jun 2011 19:57:26 UTC -->
 
-<datastore-indexes>
+<datastore-indexes/>
 
-    <!-- Used 5989 times in query history -->
-    <datastore-index kind="ProductRecipe" ancestor="false" source="auto">
-        <property name="recipeRef" direction="asc"/>
-        <property name="name" direction="asc"/>
-    </datastore-index>
-
-    <!-- Used 1 time in query history -->
-    <datastore-index kind="ProductRecipe" ancestor="false" source="auto">
-        <property name="__key__" direction="desc"/>
-    </datastore-index>
-
-</datastore-indexes>

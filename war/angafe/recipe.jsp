@@ -20,13 +20,13 @@
 <div id="contentwrapper">
 	<div id="contentcolumn">
 		<div class="recipe">
-				<img src="/angafe/image?imgId=${f:h(recipe.photo.key.id)}" />
+				<a href="${backLink}" class="${backLinkVisibility}"><-- ${backLinkTitle}</a>
 				<h1>${f:h(recipe.name)}</h1>
 				<p>Featuring: 
 					<ul>
 					<c:forEach var="p" items="${products}">
 						<li>
-							<a href="/angafe/product?id=${f:h(p.key.id)}">${f:h(p.name)}</a>
+							<a href="/angafe/product?id=${f:h(p.key.id)}&tour=recipe&recipeId=${f:h(recipe.key.id)}">${f:h(p.name)}</a>
 						</li>
 					</c:forEach>
 					</ul>

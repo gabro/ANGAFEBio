@@ -28,6 +28,7 @@ public class ProductService {
     private ProductMeta p = new ProductMeta();
     ProductRecipeService prService = new ProductRecipeService();
     ProductSpecialOfferService poService = new ProductSpecialOfferService();
+    SpecialNeedProductService npService = new SpecialNeedProductService();
     
     //Ritorna una lista di tutti i prodotti
     public List<Product> getProducts() {
@@ -97,6 +98,8 @@ public class ProductService {
         BeanUtil.copy(input, product);
         //Imposto il produttore
         product.getProducerRef().setModel((Producer)input.get("producer"));
+        //Imposto il metodo
+        product.getProductionMethodRef().setModel((ProductionMethod)input.get("method"));
         //Committo
         Transaction tx = Datastore.beginTransaction();
         Datastore.put(tx,product);
@@ -119,10 +122,27 @@ public class ProductService {
         for(ProductSpecialOffer po: productsOffers) {
             poService.deleteProductSpecialOffer(po.getKey());
         }
+        List<SpecialNeedProduct> productsNeeds = npService.getSpecialNeedsProducts(product);
+        for(SpecialNeedProduct np: productsNeeds) {
+            npService.deleteSpecialNeedProduct(np.getKey());
+        }
         Transaction tx = Datastore.beginTransaction();
         Datastore.delete(tx, key);
         tx.commit();
     }
+    
+    /**
+     * Elimina tutti i prodotti di un produttore
+     * 
+     * @param producer
+     */
+    public void deleteProducts(Producer producer) {
+        List<Product> products = this.getProducts(producer);
+        for(Product product: products) {
+            this.deleteProduct(product.getKey());
+        }
+    }
+    
     /**
      * Ottiene un prodotto
      * 

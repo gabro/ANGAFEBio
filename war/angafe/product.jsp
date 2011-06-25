@@ -20,11 +20,25 @@
 <div id="contentwrapper">
 	<div id="contentcolumn">
 		<div class="product">
+			<a href="${backLink}" class="${backLinkVisibility}"><-- ${backLinkTitle}</a>
 			<img src="/angafe/image?imgId=${f:h(product.photo.key.id)}" />
 			<h1>${f:h(product.name)}</h1>
-			<p>Produttore: <a href="/angafe/producer?id=${f:h(product.producerRef.model.key.id)}">${f:h(product.producerRef.model.name)}</a></p>
+			<p>Producer: <a href="/angafe/producer?id=${f:h(product.producerRef.model.key.id)}">${f:h(product.producerRef.model.name)}</a></p>
+			<p>Production Method: <a href="/angafe/method?id=${f:h(product.productionMethodRef.model.key.id)}">${f:h(product.productionMethodRef.model.name)}</a></p>
+			<c:if test='${fn:length(needs) > 0}'>
+				<p>Indicated for these special needs:
+					<ul>
+					<c:forEach var="n" items="${needs}">
+						<li>${f:h(n.name)}</li>
+					</c:forEach>
+					</ul>
+				</p>
+			</c:if>
 			<p>DESCRIZIONE DEL PRODOTTO</p>
 			<p>${f:h(product.description)}</p>
+			
+			<a href="${groupLinkBack}" class="${groupLinkBackVisibility}"><-- ${groupLinkBackTitle}</a>
+			<a href="${groupLinkForward}" class="${groupLinkForwardVisibility}">${groupLinkForwardTitle} --></a>
 		</div>
 	</div>
 </div>

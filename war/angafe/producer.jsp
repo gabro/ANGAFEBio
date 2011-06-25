@@ -20,6 +20,7 @@
 <div id="contentwrapper">
 	<div id="contentcolumn">
 		<div class="producer">
+			<a href="${backLink}" class="${backLinkVisibility}"><-- ${backLinkTitle}</a>
 			<h1>${f:h(producer.name)}</h1>
 			<img src="/angafe/image?imgId=${f:h(producer.photo.key.id)}" />
 			<p>INFO</p>

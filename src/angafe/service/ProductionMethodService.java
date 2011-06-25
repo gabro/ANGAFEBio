@@ -6,10 +6,12 @@ import org.slim3.datastore.Datastore;
 import org.slim3.util.BeanUtil;
 import org.slim3.util.RequestMap;
 
-import com.google.appengine.api.datastore.Transaction;
-
+import angafe.meta.ProductProductionMethodMeta;
 import angafe.meta.ProductionMethodMeta;
 import angafe.model.ProductionMethod;
+
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.Transaction;
 
 
 public class ProductionMethodService {
@@ -20,6 +22,7 @@ public class ProductionMethodService {
         return Datastore.query(p).sort(p.name.asc).asList();
     }
 
+
     public ProductionMethod addMethod(RequestMap input) {
         ProductionMethod method = new ProductionMethod();
         BeanUtil.copy(input, method);
@@ -27,5 +30,9 @@ public class ProductionMethodService {
         Datastore.put(tx,method);
         tx.commit();
         return method;
+    }
+
+    public ProductionMethod getProductionMethod(Key key) {
+        return Datastore.get(p, key);
     }
 }

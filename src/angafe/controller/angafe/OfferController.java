@@ -20,6 +20,11 @@ public class OfferController extends Controller {
 
     @Override
     public Navigation run() throws Exception {
+        
+        String backLinkTitle = "back to all offers";
+        String backLink = "/angafe/offers";
+        String backLinkVisibility = "visibile";
+
         //Recupero l'id dalla request e lo trasformo in long
         long id = Long.parseLong((String)request.getAttribute("id"));
         //Creo una chiave con quell'id
@@ -31,6 +36,10 @@ public class OfferController extends Controller {
         //Rendo accessibile la variabile
         requestScope("offer",offer);
         requestScope("products",products);
+
+        requestScope("backLink",backLink);
+        requestScope("backLinkTitle", backLinkTitle);
+        requestScope("backLinkVisibility", backLinkVisibility);
 
         //Mostro il jsp
         return forward("offer.jsp");

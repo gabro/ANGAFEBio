@@ -20,6 +20,10 @@ public class RecipeController extends Controller {
     
     @Override
     public Navigation run() throws Exception {
+        
+        String backLinkTitle = "back to all recipes";
+        String backLink = "/angafe/recipes";
+        String backLinkVisibility = "visibile";
 
         //Recupero l'id dalla request e lo trasformo in long
         long id = Long.parseLong((String)request.getAttribute("id"));
@@ -32,6 +36,11 @@ public class RecipeController extends Controller {
         //Rendo accessibile la variabile
         requestScope("recipe",recipe);
         requestScope("products",products);
+        
+        requestScope("backLink",backLink);
+        requestScope("backLinkTitle", backLinkTitle);
+        requestScope("backLinkVisibility", backLinkVisibility);
+
         
         //Mostro il jsp
         return forward("recipe.jsp");

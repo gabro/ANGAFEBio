@@ -9,7 +9,6 @@ import org.slim3.util.RequestMap;
 
 import angafe.meta.ProducerMeta;
 import angafe.model.Producer;
-import angafe.model.Product;
 
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.Transaction;
@@ -17,6 +16,8 @@ import com.google.appengine.api.datastore.Transaction;
 
 public class ProducerService {
 
+    ProductService productService = new ProductService();
+    
     private ProducerMeta p = new ProducerMeta();
     
     public List<Producer> getProducers() {
@@ -40,6 +41,10 @@ public class ProducerService {
     }
 
     public void deleteProducer(Key key) {
+        //Cancello tutti i prodotti di questo produttore
+        Producer producer = this.getProducer(key);
+        productService.deleteProducts(producer);
+        //Cancello il produttore
         Transaction tx = Datastore.beginTransaction();
         Datastore.delete(tx, key);
         tx.commit();

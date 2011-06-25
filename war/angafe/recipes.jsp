@@ -6,36 +6,43 @@
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>ANGAFE Index</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>ANGAFE Index</title>
 </head>
 <body>	
 
-<div id="maincontainer">
+	<div id="maincontainer">
 
-<div id="header">
-	<jsp:include page="/includes/header.jsp" flush="true" />
-</div>
-
-<div id="contentwrapper">
-	<div id="contentcolumn">
-		<div class="list">
-			<a href="/angafe/product?id=${product.key.id}" class="${visibility}"><-- ${f:h(backText)}</a>
-			<h1>${f:h(title)}</h1>
-		<table>
-			<c:forEach var="r" items="${recipes}">
-			<tr>
-				<td class="photo">
-					<img src="/angafe/image?imgId=${f:h(r.photo.key.id)}" />
-				</td>
-				<td>
-					<a href="/angafe/recipe?id=${f:h(r.key.id)}">${f:h(r.name)}</a>
-				</td>
-			</tr>
-			</c:forEach>
-		</table>
+		<div id="header">
+			<jsp:include page="/includes/header.jsp" flush="true" />
 		</div>
-	</div>
+
+		<div id="contentwrapper">
+			<div id="contentcolumn">
+				<div class="list">
+					<a href="/angafe/product?id=${product.key.id}" class="${visibility}"><-- ${f:h(backText)}</a>
+					<h1>${f:h(title)}</h1>
+					<c:choose>
+					<c:when test="${fn:length(recipes) > 0}">
+					<table>
+						<c:forEach var="r" items="${recipes}">
+						<tr>
+							<td class="photo">
+								<img src="/angafe/image?imgId=${f:h(r.photo.key.id)}" />
+							</td>
+							<td>
+								<a href="/angafe/recipe?id=${f:h(r.key.id)}">${f:h(r.name)}</a>
+							</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</c:when>
+			<c:otherwise>
+			<p>Sorry. No recipes available!</p>
+		</c:otherwise>
+	</c:choose>
+</div>
+</div>
 </div>
 
 <div id="rightcolumn">

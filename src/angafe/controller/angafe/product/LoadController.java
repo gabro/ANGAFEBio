@@ -9,9 +9,11 @@ import org.slim3.util.RequestMap;
 import angafe.model.Photo;
 import angafe.model.Producer;
 import angafe.model.Product;
+import angafe.model.ProductionMethod;
 import angafe.service.PhotoService;
 import angafe.service.ProducerService;
 import angafe.service.ProductService;
+import angafe.service.ProductionMethodService;
 
 import com.google.appengine.api.datastore.Key;
 
@@ -19,6 +21,7 @@ public class LoadController extends Controller {
 
     ProductService productService = new ProductService();
     ProducerService producerService = new ProducerService();
+    ProductionMethodService methodService = new ProductionMethodService();
     PhotoService photoService = new PhotoService();
     
     @Override
@@ -29,6 +32,7 @@ public class LoadController extends Controller {
         FileItem fileItem = requestScope("img");
         //Creo una requestMap
         RequestMap input = new RequestMap(request);
+       
         //Recupero l'id e la chiave del produttore
         long producerId = Long.decode((String)request.getAttribute("producerId"));
         Key producerKey = Datastore.createKey(Producer.class, producerId);
@@ -36,6 +40,14 @@ public class LoadController extends Controller {
         Producer producer = producerService.getProducer(producerKey);
         //Aggiungo il produttore alla RequestMap
         input.put("producer",producer);
+        
+        //Recupero l'id e la chiave del metodo
+        long methodId = Long.decode((String)request.getAttribute("methodId"));
+        Key methodKey = Datastore.createKey(ProductionMethod.class, methodId);
+        //Recupero il metodo
+        ProductionMethod method = methodService.getProductionMethod(methodKey);
+        //Aggiungo il metodo alla RequestMap
+        input.put("method",method);
         
         //Se è stata caricata una foto la aggiungo alla RequestMap
         if(fileItem != null) {

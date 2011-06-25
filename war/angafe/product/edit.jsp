@@ -37,7 +37,15 @@
 					<td>Produttore</td>
 					<td><select name="producerId">
 						<c:forEach var="p" items="${allProducers}">
-						<option value="${f:h(p.key.id)}">${f:h(p.name)}</option>
+						<c:choose>
+							<c:when test="${p == product.producerRef.model}">
+								<!-- Autoseleziono il produttore -->
+								<option value="${f:h(p.key.id)}" selected>${f:h(p.name)}</option>
+							</c:when>
+							<c:otherwise>
+								<option value="${f:h(p.key.id)}">${f:h(p.name)}</option>
+							</c:otherwise>
+						</c:choose>
 						</c:forEach>
 					</td>
 				</tr>

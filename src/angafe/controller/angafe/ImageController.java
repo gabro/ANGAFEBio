@@ -15,15 +15,17 @@ public class ImageController extends Controller {
     
     @Override
     public Navigation run() throws Exception {
-        long imgId = Long.parseLong((String)request.getParameter("imgId"));
-        Key imgKey = Datastore.createKey(Photo.class, imgId);
-        Photo photo = service.getPhoto(imgKey);
-        
-        if (photo != null) {
-            // Set the appropriate Content-Type header and write the raw bytes
-            // to the response's output stream
-            response.setContentType("image/jpeg");
-            response.getOutputStream().write(photo.getBytes());
+        //Se il parametro non è vuoto
+        if (!request.getParameter("imgId").equals("")) {
+            long imgId = Long.parseLong((String) request.getParameter("imgId"));
+            Key imgKey = Datastore.createKey(Photo.class, imgId);
+            Photo photo = service.getPhoto(imgKey);
+            if (photo != null) {
+                // Set the appropriate Content-Type header and write the raw bytes
+                // to the response's output stream
+                response.setContentType("image/jpeg");
+                response.getOutputStream().write(photo.getBytes());
+            }
         } else {
             // If no image is found with the given title, redirect the user to
             // a static image

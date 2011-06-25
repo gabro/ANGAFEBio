@@ -22,6 +22,8 @@
 		<div class="list">
 			<a href="/angafe/producer?id=${producer.key.id}" class="${visibility}"><-- ${f:h(backText)}</a>
 			<h1>${f:h(title)}</h1>
+				<c:choose>
+				<c:when test="${fn:length(producers) > 0}">
 		<table>
 			<c:forEach var="p" items="${producers}">
 			<tr>
@@ -33,7 +35,13 @@
 				</td>
 			</tr>
 			</c:forEach>
+			
 		</table>
+		</c:when>
+		<c:otherwise>
+			<p>Sorry. No producers available!</p>
+		</c:otherwise>
+		</c:choose>
 		</div>
 	</div>
 </div>

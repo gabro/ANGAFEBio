@@ -65,4 +65,8 @@ public class SpecialOfferService {
         Datastore.delete(tx,key);
         tx.commit();
     }
+
+    public SpecialOffer getSpecialOffer(Key key) {
+        return Datastore.get(s,key);
+    }
 }

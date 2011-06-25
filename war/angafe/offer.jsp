@@ -20,12 +20,13 @@
 <div id="contentwrapper">
 	<div id="contentcolumn">
 		<div class="recipe">
+				<a href="${backLink}" class="${backLinkVisibility}"><-- ${backLinkTitle}</a>
 				<h1>${f:h(offer.name)}</h1>
 				<p>Featuring: 
 					<ul>
 					<c:forEach var="p" items="${products}">
 						<li>
-							<a href="/angafe/product?id=${f:h(p.key.id)}">${f:h(p.name)}</a>
+							<a href="/angafe/product?id=${f:h(p.key.id)}&tour=offer&offerId=${f:h(offer.key.id)}"}>${f:h(p.name)}</a>
 						</li>
 					</c:forEach>
 					</ul>

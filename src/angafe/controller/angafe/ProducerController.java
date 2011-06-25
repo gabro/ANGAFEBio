@@ -5,13 +5,20 @@ import org.slim3.controller.Navigation;
 import org.slim3.datastore.Datastore;
 
 import angafe.model.Producer;
+import angafe.service.ProducerService;
 
 import com.google.appengine.api.datastore.Key;
 
 public class ProducerController extends Controller {
 
+    ProducerService service = new ProducerService();
+    
     @Override
     public Navigation run() throws Exception {
+        
+        String backLinkTitle = "back to all producers";
+        String backLink = "/angafe/producers";
+        String backLinkVisibility = "visibile";
         
         //Recupero l'id dalla request e lo trasformo in long
         long id = Long.parseLong((String)request.getAttribute("id"));
@@ -19,10 +26,15 @@ public class ProducerController extends Controller {
         Key prodKey = Datastore.createKey(Producer.class, id);
         
         //Ottengo il produttore dal datastore tramite la chiave
-        Producer producer = Datastore.get(Producer.class, prodKey);
+        Producer producer = service.getProducer(prodKey);
         //Rendo accessibile la variabile
         requestScope("producer",producer);
 
+        requestScope("backLink",backLink);
+        requestScope("backLinkTitle", backLinkTitle);
+        requestScope("backLinkVisibility", backLinkVisibility);
+
+        
         //Mostro il jsp
         return forward("producer.jsp");
         }

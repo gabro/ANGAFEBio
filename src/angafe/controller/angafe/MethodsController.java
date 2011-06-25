@@ -24,7 +24,7 @@ public class MethodsController extends Controller {
         //Mostra tutti i prodotti
         if(null == filter) {
             methods = methodService.getProductionMethods();
-            title = "All products";
+            title = "All production methods";
         } else {
             //TODO filtro methods
 //            
