@@ -22,7 +22,7 @@ public class EditController extends Controller {
     public Navigation run() throws Exception {
         List<Producer> allProducers = producerService.getProducers();
         requestScope("allProducers",allProducers);
-
+        
         long id = Long.decode((String)request.getAttribute("id"));
         Key prodKey = Datastore.createKey(Product.class, id);
         Product product = service.getProduct(prodKey);

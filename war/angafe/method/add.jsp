@@ -6,19 +6,21 @@
 
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>ANGAFE Index</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>ANGAFE Index</title>
 </head>
 <body>	
-
-	<div id="maincontainer">
-
-		<div id="header">
+<div id="background_texture">
+	<div id="leaf">
+		<div id="wrapper">
 			<jsp:include page="/includes/header.jsp" flush="true" />
-		</div>
-
-		<div id="contentwrapper">
-			<div id="contentcolumn">
+			<div class="top"><img src="/resources/layout/content_box_top.png" width="940" height="10" alt="top" /></div>
+			<div id="content_bg">
+				<div id="left_column">
+				
+				
+				
+				
 				<table>
 					<form method="post" action="load?action=add">
 						<tr>
@@ -39,15 +41,22 @@
 						</tr>
 					</form>
 				</table>	
-			</div>
-		</div>
 
-		<div id="rightcolumn">
-			<jsp:include page="/includes/sidemenu.jsp" flush="true" />
-		</div>
-
-		<div id="footer">Realizzazione a cura di <b>Andrea Villa</b>, <b>Federico Pellegatta</b> e <b>Gabriele Petronella</b></a></div>
-
-	</div>
+				
+				
+								</div>
+        	<div id="right_column">
+           		<jsp:include page="/includes/sidemenu.jsp" flush="true" />     	
+        	</div>
+        	<hr class="clear" />
+      </div>
+      <div class="bottom"><img src="/resources/layout/content_box_bottom.png" width="940" height="21" alt="bottom" /></div>
+    </div>
+    <div id="footer">
+      <div class="left">Realizzazione a cura di <b>Andrea Villa</b>, <b>Federico Pellegatta</b> e <b>Gabriele Petronella</b></div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
+				

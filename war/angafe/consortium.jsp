@@ -10,17 +10,16 @@
 <title>ANGAFE Index</title>
 </head>
 <body>	
-
-<div id="maincontainer">
-
-<div id="header">
-	<jsp:include page="/includes/header.jsp" flush="true" />
-</div>
-
-<div id="contentwrapper">
-	<div id="contentcolumn">
+<div id="background_texture">
+	<div id="leaf">
+		<div id="wrapper">
+			<jsp:include page="/includes/header.jsp" flush="true" />
+			<div class="top"><img src="/resources/layout/content_box_top.png" width="940" height="10" alt="top" /></div>
+			<div id="content_bg">
+				<div id="left_column">
+				
+				
 		<h1>THE CONSORTIUM</h1>
-		<br />
 		<p>	Il Consorzio per il Controllo dei Prodotti Biologici (CCPB) è stato fondato nel 1988 da un gruppo di aziende operanti nei settori della produzione agricola, della trasformazione e della distribuzione di prodotti agricoli e alimentari ottenuti con il metodo dell'agricoltura biologica con lo scopo di fornire le migliori garanzie ai consumatori ed al mercato.</p>
 
 			<p>In questo senso il CCPB è stato autorizzato dal Ministero dell'Agricoltura e Foreste quale organismo di controllo e certificazione delle produzioni biologiche in conformità a quanto previsto dal Reg. CEE 2092/91 ed ha perseguito ed ottenuto l'accreditamento del SINCERT riguardo alla norma EN 45011 per i certificatori di prodotto ed è stato accreditato pure dall'IFOAM in conformità ai Basic Standard da essa sviluppati.
@@ -33,15 +32,18 @@
 	<p>		Possono diventare soci del Consorzio tutti i produttori, trasformatori, distributori o importatori di prodotti agricoli secondo le modalità previste dallo Statuto.
 			I Soci possono partecipare alle iniziative promosse dal Consorzio ed, in particolare, essere presenti a quelle manifestazioni fieristiche in cui viene organizzata una partecipazione collettiva. I soci hanno diritto inoltre all'utilizzo dei marchi consortili sui prodotti controllati da CCPB Srl e sul loro materiale di comunicazione.</p>
 		
-	</div>
-</div>
-
-<div id="rightcolumn">
-		<jsp:include page="/includes/sidemenu.jsp" flush="true" />
-</div>
-
-<div id="footer">Realizzazione a cura di <b>Andrea Villa</b>, <b>Federico Pellegatta</b> e <b>Gabriele Petronella</b></a></div>
-
+				</div>
+        	<div id="right_column">
+           		<jsp:include page="/includes/sidemenu.jsp" flush="true" />     	
+        	</div>
+        	<hr class="clear" />
+      </div>
+      <div class="bottom"><img src="/resources/layout/content_box_bottom.png" width="940" height="21" alt="bottom" /></div>
+    </div>
+    <div id="footer">
+      <div class="left">Realizzazione a cura di <b>Andrea Villa</b>, <b>Federico Pellegatta</b> e <b>Gabriele Petronella</b></div>
+    </div>
+  </div>
 </div>
 </body>
 </html>

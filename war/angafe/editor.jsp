@@ -6,27 +6,28 @@
 
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>ANGAFE Index</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>ANGAFE Index</title>
 </head>
 <body>	
-
-	<div id="maincontainer">
-
-		<div id="header">
+<div id="background_texture">
+	<div id="leaf">
+		<div id="wrapper">
 			<jsp:include page="/includes/header.jsp" flush="true" />
-		</div>
-
-		<div id="contentwrapper">
-			<div id="contentcolumn" class="editor">
-				<h1> EDITOR </h1>
-				<table>
-					<th>
-						PRODUCTS
-					</th>
+			<div class="top"><img src="/resources/layout/content_box_top.png" width="940" height="10" alt="top" /></div>
+			<div id="content_bg">
+				<div id="left_column">
+				
+				
+				
+				<h1>Editor</h1>
+				<table class="service_table edit_table">
+					<th>Products</th>
+					<th>Edit</th>
+					<th>Delete</th>
 					<c:forEach var="p" items="${allProducts}">
 					<tr>
-						<td class="first">
+						<td>
 							${f:h(p.name)}
 						</td>
 						<td>
@@ -37,20 +38,16 @@
 						</td>	
 					</tr>
 				</c:forEach>
-				<tr>
-					<td class="first">
-						<a href="/angafe/product/add">Add</a>
-					</td>
-				</tr>
 			</table>
-			<br />
-			<table>
-				<th>
-					PRODUCERS
-				</th>
+									<a href="/angafe/product/add">Add</a>
+			<br /><br />
+			<table class="service_table edit_table">
+					<th>Producers</th>
+					<th>Edit</th>
+					<th>Delete</th>
 				<c:forEach var="p" items="${allProducers}">
 				<tr>
-					<td class="first">
+					<td>
 						${f:h(p.name)}
 					</td>
 					<td>
@@ -61,20 +58,16 @@
 					</td>	
 				</tr>
 			</c:forEach>
-			<tr>
-				<td class="first">
-					<a href="/angafe/producer/add">Add</a>
-				</td>
-			</tr>
 		</table>
-		<br />
-		<table>
-			<th>
-				RECIPES
-			</th>
+							<a href="/angafe/producer/add">Add</a>
+			<br /><br />
+		<table class="service_table edit_table">
+				<th>Recipes</th>
+					<th>Edit</th>
+					<th>Delete</th>
 			<c:forEach var="r" items="${allRecipes}">
 			<tr>
-				<td class="first">
+				<td>
 					${f:h(r.name)}
 				</td>
 				<td>
@@ -85,20 +78,16 @@
 				</td>	
 			</tr>
 		</c:forEach>
-		<tr>
-			<td class="first">
-				<a href="/angafe/recipe/add">Add</a>
-			</td>
-		</tr>
 	</table>
-	<br />
-	<table>
-		<th>
-			OFFERS
-		</th>
+	<a href="/angafe/recipe/add">Add</a>
+		<br /><br />
+	<table class="service_table edit_table">
+				<th>Offers</th>
+					<th>Edit</th>
+					<th>Delete</th>
 		<c:forEach var="o" items="${allOffers}">
 		<tr>
-			<td class="first">
+			<td>
 				${f:h(o.name)}
 			</td>
 			<td>
@@ -109,20 +98,16 @@
 			</td>	
 		</tr>
 	</c:forEach>
-	<tr>
-		<td class="first">
-			<a href="/angafe/offer/add">Add</a>
-		</td>
-	</tr>
 </table>
-<br />
-<table>
-	<th>
-		METHODS
-	</th>
+<a href="/angafe/offer/add">Add</a>
+	<br /><br />
+<table class="service_table edit_table">
+				<th>Methods</th>
+					<th>Edit</th>
+					<th>Delete</th>
 	<c:forEach var="m" items="${allMethods}">
 	<tr>
-		<td class="first">
+		<td>
 			${f:h(m.name)}
 		</td>
 		<td>
@@ -133,20 +118,16 @@
 		</td>	
 	</tr>
 </c:forEach>
-<tr>
-	<td class="first">
-		<a href="/angafe/method/add">Add</a>
-	</td>
-</tr>
 </table>
-<br />
-<table>
-	<th>
-		SPECIAL NEEDS
-	</th>
+		<a href="/angafe/method/add">Add</a>
+	<br /><br />
+<table class="service_table edit_table">
+				<th>Special Needs</th>
+					<th>Edit</th>
+					<th>Delete</th>
 	<c:forEach var="n" items="${allNeeds}">
 	<tr>
-		<td class="first">
+		<td>
 			${f:h(n.name)}
 		</td>
 		<td>
@@ -157,21 +138,20 @@
 		</td>	
 	</tr>
 </c:forEach>
-<tr>
-	<td class="first">
-		<a href="/angafe/need/add">Add</a>
-	</td>
-</tr>
 </table>
-</div>
-</div>
-
-<div id="rightcolumn">
-	<jsp:include page="/includes/sidemenu.jsp" flush="true" />
-</div>
-
-<div id="footer">Realizzazione a cura di <b>Andrea Villa</b>, <b>Federico Pellegatta</b> e <b>Gabriele Petronella</b></a></div>
-
+		<a href="/angafe/need/add">Add</a>
+				</div>
+        	<div id="right_column">
+           		<jsp:include page="/includes/sidemenu.jsp" flush="true" />     	
+        	</div>
+        	<hr class="clear" />
+      </div>
+      <div class="bottom"><img src="/resources/layout/content_box_bottom.png" width="940" height="21" alt="bottom" /></div>
+    </div>
+    <div id="footer">
+      <div class="left">Realizzazione a cura di <b>Andrea Villa</b>, <b>Federico Pellegatta</b> e <b>Gabriele Petronella</b></div>
+    </div>
+  </div>
 </div>
 </body>
 </html>

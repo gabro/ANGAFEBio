@@ -10,19 +10,25 @@
 <title>ANGAFE Index</title>
 </head>
 <body>	
+<div id="background_texture">
+	<div id="leaf">
+		<div id="wrapper">
+			<jsp:include page="/includes/header.jsp" flush="true" />
+			<div class="top"><img src="/resources/layout/content_box_top.png" width="940" height="10" alt="top" /></div>
+			<div id="content_bg">
+				<div id="left_column">
+				
+				
 
-<div id="maincontainer">
-
-<div id="header">
-	<jsp:include page="/includes/header.jsp" flush="true" />
-</div>
-
-<div id="contentwrapper">
-	<div id="contentcolumn">
-		<div class="list">
-			<a href="BACK_LINK" class="${visibility}"><-- ${f:h(backText)}</a>
+			<a href="BACK_LINK" class="${visibility} "><h3><-- ${f:h(backText)}</h3></a>
 			<h1>${f:h(title)}</h1>
-		<table>
+			<c:choose>
+			<c:when test="${fn:length(needs) > 0}">
+				<table class="service_table">
+				<tbody>
+				          <tr> 
+            				<th>Nome</th> 
+         				 </tr> 
 			<c:forEach var="n" items="${needs}">
 			<tr>
 				<td>
@@ -30,19 +36,28 @@
 				</td>
 			</tr>
 			</c:forEach>
-		</table>
-		</div>
-	</div>
-</div>
-
-<div id="rightcolumn">
-	<div class="innertube">
-		<jsp:include page="/includes/sidemenu.jsp" flush="true" />
-	</div>
-</div>
-
-<div id="footer">Realizzazione a cura di <b>Andrea Villa</b>, <b>Federico Pellegatta</b> e <b>Gabriele Petronella</b></a></div>
-
+					</tbody>
+					</table>
+				</c:when>
+				<c:otherwise>
+				<p>Sorry. No special needs available!</p>
+			</c:otherwise>
+		</c:choose>
+		
+		
+				</div>
+        	<div id="right_column">
+           		<jsp:include page="/includes/sidemenu.jsp" flush="true" />     	
+        	</div>
+        	<hr class="clear" />
+      </div>
+      <div class="bottom"><img src="/resources/layout/content_box_bottom.png" width="940" height="21" alt="bottom" /></div>
+    </div>
+    <div id="footer">
+      <div class="left">Realizzazione a cura di <b>Andrea Villa</b>, <b>Federico Pellegatta</b> e <b>Gabriele Petronella</b></div>
+    </div>
+  </div>
 </div>
 </body>
 </html>
+

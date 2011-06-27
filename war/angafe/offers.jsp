@@ -6,25 +6,30 @@
 
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>ANGAFE Index</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>ANGAFE Index</title>
 </head>
 <body>	
-
-	<div id="maincontainer">
-
-		<div id="header">
+<div id="background_texture">
+	<div id="leaf">
+		<div id="wrapper">
 			<jsp:include page="/includes/header.jsp" flush="true" />
-		</div>
+			<div class="top"><img src="/resources/layout/content_box_top.png" width="940" height="10" alt="top" /></div>
+			<div id="content_bg">
+				<div id="left_column">
+				
+				
+				
 
-		<div id="contentwrapper">
-			<div id="contentcolumn">
-				<div class="list">
-					<a href="BACK_LINK" class="${visibility}"><-- ${f:h(backText)}</a>
+					<a href="BACK_LINK" class="${visibility} "><h3><-- ${f:h(backText)}</h3></a>
 					<h1>${f:h(title)}</h1>
 					<c:choose>
 					<c:when test="${fn:length(offers) > 0}">
-					<table>
+				<table class="service_table">
+				<tbody>
+				          <tr> 
+            				<th>Nome</th> 
+         				 </tr> 
 						<c:forEach var="o" items="${offers}">
 						<tr>
 							<td>
@@ -32,24 +37,27 @@
 							</td>
 						</tr>
 					</c:forEach>
-				</table>
+							</tbody>
+							</table>
 			</c:when>
 			<c:otherwise>
 			<p>Sorry. No offers available!</p>
 		</c:otherwise>
 	</c:choose>
-</div>
-</div>
-</div>
 
-<div id="rightcolumn">
-	<div class="innertube">
-		<jsp:include page="/includes/sidemenu.jsp" flush="true" />
-	</div>
-</div>
-
-<div id="footer">Realizzazione a cura di <b>Andrea Villa</b>, <b>Federico Pellegatta</b> e <b>Gabriele Petronella</b></a></div>
-
+				</div>
+        	<div id="right_column">
+           		<jsp:include page="/includes/sidemenu.jsp" flush="true" />     	
+        	</div>
+        	<hr class="clear" />
+      </div>
+      <div class="bottom"><img src="/resources/layout/content_box_bottom.png" width="940" height="21" alt="bottom" /></div>
+    </div>
+    <div id="footer">
+      <div class="left">Realizzazione a cura di <b>Andrea Villa</b>, <b>Federico Pellegatta</b> e <b>Gabriele Petronella</b></div>
+    </div>
+  </div>
 </div>
 </body>
 </html>
+

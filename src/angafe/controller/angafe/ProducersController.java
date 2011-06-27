@@ -42,8 +42,8 @@ public class ProducersController extends Controller {
                 title = "Producers using "+method.getName();
                 visibility = "visibile";
                 backText = "Back to the production method";
-                backLink = "/angafe/method?id="+method.getKey().getId();
-                tourFilter = "&tour=method&methodId="+method.getKey().getId();
+                backLink = "/angafe/method?id="+id;
+                tourFilter = "&tour=method&methodId="+id;
             }
         }
         
